@@ -3,7 +3,7 @@ module.exports = {
   // 继承的规则集
   extends: [
     "stylelint-config-standard", // 使用官方推荐的规则集
-    "stylelint-config-recommended-less", // 针对less的规则集
+    "stylelint-config-recommended-scss", // 针对less的规则集
     "stylelint-config-standard-vue" // 针对vue单文件组件的CSS规则集
   ], // 使用插件
   plugins: ["stylelint-order"], // 规定CSS书写属性顺序
@@ -125,8 +125,8 @@ module.exports = {
   // 为不同类型的文件或语法提供不同的配置和规则
   overrides: [
     {
-      files: ["**/*.(less|css|vue|html)"],
-      customSyntax: "postcss-less"
+      files: ["**/*.(scss|css|vue|html)"],
+      customSyntax: "postcss-scss"
     },
     {
       files: ["**/*.(html|vue)"],
