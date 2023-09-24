@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "esnext", // 指定编译之后的版本目录
+    "module": "esnext", // 指定要使用的模块化的规范
+    "moduleResolution": "node", // 模块解析策略
+    "strict": true, // 启动所有类型检查
+    "forceConsistentCasingInFileNames": true, // 强制代码中使用的模块文件名必须和文件系统中的文件名保持大小写一致
+    "allowSyntheticDefaultImports": true, // 允许导入没有默认导出的模块
+    "jsx": "preserve", // 指定jsx代码用于的开发环境:
+    "importHelpers": true, // 引入tslib里的复制工具函数,
+    "resolveJsonModule": true, // 解析JSON模块
+    "noUnusedLocals": false, // 检查未使用的本地变量
+    "noUnusedParameters": true, // 检查未使用的函数参数
+    "experimentalDecorators": true, // 开启装饰器支持
+    "noImplicitAny": false, // 声明变量时可以不进行明确的类型注解
+    "skipLibCheck": true, // 跳过检查内置类型定义库
+    "baseUrl": "./", // 项目根目录
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"], // 指定要包含在编译中的库文件
+    "types": ["node"], // 指定要包含的类型定义文件
+    "typeRoots": ["./node_modules/@types/", "./types"], // 指定类型定义文件的搜索目录
+    // 指定模块路径映射
+    "paths": {
+      "@/*": ["./src/*"],
+      "@img/*": ["./src/assets/img/*"],
+      "#": ["./types/*"]
+    }
+  },
+  // 需要编译的文件
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "types/**/*.ts",
+    "build/**/*.ts",
+    "build/**/*.d.ts",
+    "mock/**/*.ts",
+    "vite.config.ts"
+  ],
+  // 排除不需要编译的文件
+  "exclude": ["node_modules", "dist", "**/*.js"]
+}
