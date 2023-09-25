@@ -1,15 +1,21 @@
-import { createApp } from "vue";
-import { createPinia } from "pinia";
-import router from "./router";
-import App from "./App.vue";
-
 import "normalize.css";
-import "./assets/css/reset.css";
+import "./styles/index.scss";
 import "virtual:windi.css";
 
-const app = createApp(App);
+import { createApp } from "vue";
 
-app.use(createPinia());
-app.use(router);
+import { createPinia } from "pinia";
+import { setupRouter } from "@/router";
 
-app.mount("#app");
+import App from "./App.vue";
+
+async function bootstrap() {
+  const app = createApp(App);
+  setupRouter(app);
+
+  app.use(createPinia());
+
+  app.mount("#app");
+}
+
+bootstrap();

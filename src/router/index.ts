@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
+import type { App } from "vue";
 
 import { basicRoutes } from "./routes";
 
@@ -12,10 +13,10 @@ const WHITE_LIST: string[] = [];
   });
 })(basicRoutes);
 
-const routes: RouteRecordRaw[] = [];
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+export const router = createRouter({
+  history: createWebHashHistory(), // hash模式
+  routes: basicRoutes as RouteRecordRaw[], // 初始路由列表
+  scrollBehavior: () => ({ left: 0, top: 0 }) // 路由切换滚动到顶部
 });
 
-export default router;
+export const setupRouter = (app: App<Element>) => app.use(router);
