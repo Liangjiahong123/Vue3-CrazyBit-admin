@@ -41,14 +41,16 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
-      "@img": fileURLToPath(new URL("./src/assets/img", import.meta.url)),
+      "@svg": fileURLToPath(new URL("./src/assets/svg", import.meta.url)),
       "#": fileURLToPath(new URL("./types", import.meta.url))
     }
   },
 
   css: {
     preprocessorOptions: {
-      scss: {}
+      scss: {
+        additionalData: "@import '@/styles/mixins/public.scss';"
+      }
     }
   }
 });

@@ -1,0 +1,6 @@
+@mixin bg($url, $r, $p, $s) {
+  background-image: url("@/assets/#{$url}");
+  background-repeat: #{$r};
+  background-position: #{$p};
+  background-size: #{$s};
+}
