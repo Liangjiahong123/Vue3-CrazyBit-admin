@@ -6,7 +6,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="cbit-app-logo flex items-center">
+  <div class="cbit-app-logo flex items-center pl-4">
     <img src="@svg/logo.svg" class="w-48px h-48px" />
     <div class="cbit-app-logo-title truncate ml-2" v-show="showTitle">
       {{ title }}
@@ -18,6 +18,7 @@ defineProps({
 $prefix-cls: "cbit-app-logo";
 
 .#{$prefix-cls} {
+  height: 80px;
   &-title {
     color: #fff;
     font-weight: bold;

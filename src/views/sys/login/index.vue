@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import LoginRecommend from "./c-cpns/LoginRecommend.vue";
+import PasswordForm from "./c-cpns/PasswordForm.vue";
 </script>
 
 <template>
   <div class="login-wrapper relative w-full h-full px-4">
-    <div class="container h-full py-8 sm:px-28 flex jc-between">
-      <div class="left flex flex-col flex-1">
+    <div class="container flex h-full mx-auto py-2 sm:px-10">
+      <div class="left flex flex-col w-1/2 pl-4 mr-4">
         <AppLogo />
         <LoginRecommend />
       </div>
-      <div class="right flex-1">Right</div>
+      <div class="right flex flex-col w-1/2 h-full">
+        <div class="login-form w-full my-auto mx-auto xl:ml-16 xl:w-3/4 xl:p-4">
+          <PasswordForm />
+        </div>
+      </div>
     </div>
   </div>
 </template>
