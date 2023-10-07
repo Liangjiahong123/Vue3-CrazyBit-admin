@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import LoginRecommend from "./c-cpns/LoginRecommend.vue";
-import PasswordForm from "./c-cpns/PasswordForm.vue";
+import LoginRecommend from "./components/LoginRecommend.vue";
+import PasswordForm from "./components/PasswordForm.vue";
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import PasswordForm from "./c-cpns/PasswordForm.vue";
         <LoginRecommend />
       </div>
       <div class="right flex flex-col w-1/2 h-full">
-        <div class="login-form w-full my-auto mx-auto xl:ml-16 xl:w-3/4 xl:p-4">
+        <div class="login-form w-full my-auto mx-auto xl:ml-16 xl:w-3/4 xl:p-4 xl:bg-transparent">
           <PasswordForm />
         </div>
       </div>
