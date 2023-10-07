@@ -1,0 +1,11 @@
+.el-checkbox {
+  .el-checkbox__inner {
+    border-radius: 4px;
+  }
+
+  &.is-checked {
+    .el-checkbox__label {
+      color: rgba(0, 0, 0, 0.8) !important;
+    }
+  }
+}
