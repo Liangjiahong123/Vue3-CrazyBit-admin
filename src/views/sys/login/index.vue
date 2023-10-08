@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import LoginRecommend from "./components/LoginRecommend.vue";
 import PasswordForm from "./components/PasswordForm.vue";
+import MobileForm from "./components/MobileForm.vue";
+import QrCodeForm from "./components/QrCodeForm.vue";
+import ResetPasswordForm from "./components/ResetPasswordForm.vue";
+import RegisterForm from "./components/RegisterForm.vue";
 </script>
 
 <template>
@@ -13,6 +17,10 @@ import PasswordForm from "./components/PasswordForm.vue";
       <div class="right flex flex-col w-1/2 h-full">
         <div class="login-form w-full my-auto mx-auto xl:ml-16 xl:w-3/4 xl:p-4 xl:bg-transparent">
           <PasswordForm />
+          <MobileForm />
+          <QrCodeForm />
+          <ResetPasswordForm />
+          <RegisterForm />
         </div>
       </div>
     </div>
