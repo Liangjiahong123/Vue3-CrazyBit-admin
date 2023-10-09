@@ -15,7 +15,9 @@ import RegisterForm from "./components/RegisterForm.vue";
         <LoginRecommend />
       </div>
       <div class="right flex flex-col w-1/2 h-full">
-        <div class="login-form w-full my-auto mx-auto xl:ml-16 xl:w-3/4 xl:p-4 xl:bg-transparent">
+        <div
+          class="login-form w-full my-auto mx-auto xl:ml-16 xl:max-w-5/7 xl:p-4 xl:bg-transparent"
+        >
           <PasswordForm />
           <MobileForm />
           <QrCodeForm />

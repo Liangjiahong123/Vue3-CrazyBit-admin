@@ -1,12 +1,9 @@
 <script lang="ts" setup>
-import { View, Hide } from "@element-plus/icons-vue";
-
-import { useLoginState, LoginStateEnum, usePasswordState } from "../hooks/useState";
+import LoginFormTitle from "./LoginFormTitle.vue";
+import { useLoginState, LoginStateEnum } from "../useLogin";
 
 const { loginState, setLoginState } = useLoginState();
 const showPwdLogin = computed(() => unref(loginState) === LoginStateEnum.LOGIN);
-
-const { passwordState, setPasswordState } = usePasswordState();
 
 const formData = reactive({
   account: "crazybit",
@@ -17,7 +14,7 @@ const formData = reactive({
 
 <template>
   <main v-show="showPwdLogin" class="password-form">
-    <h2 class="mb-3 text-3xl font-bold">登录</h2>
+    <LoginFormTitle />
     <el-form class="p-4">
       <el-form-item name="account">
         <el-input size="large" placeholder="账号" v-model="formData.account" />
@@ -25,19 +22,11 @@ const formData = reactive({
       <el-form-item name="password">
         <el-input
           size="large"
-          :type="passwordState ? 'text' : 'password'"
+          type="password"
           placeholder="密码"
+          show-password
           v-model="formData.password"
         />
-        <el-icon
-          color="rgba(0,0,0,.4)"
-          class="!absolute right-3 cursor-pointer"
-          @click="setPasswordState"
-        >
-          <View v-show="passwordState" />
-          <Hide v-show="!passwordState" />
-        </el-icon>
-        <!-- <el-icon color="rgba(0,0,0,.4)"><Hide /></el-icon> -->
       </el-form-item>
 
       <el-row>
@@ -80,3 +69,4 @@ const formData = reactive({
     </el-form>
   </main>
 </template>
+../hooks/useLogin ../useLogin

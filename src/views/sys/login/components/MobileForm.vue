@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { useLoginState, LoginStateEnum } from "../hooks/useState";
+import LoginFormTitle from "./LoginFormTitle.vue";
+import { useLoginState, LoginStateEnum } from "../useLogin";
 
 const { loginState, setLoginState } = useLoginState();
 const showMobileLogin = computed(() => unref(loginState) === LoginStateEnum.MOBILE);
@@ -12,7 +13,7 @@ const formData = reactive({
 
 <template>
   <main class="mobile-form" v-show="showMobileLogin">
-    <h2 class="mb-3 text-3xl font-bold">手机登录</h2>
+     <LoginFormTitle />
     <el-form class="p-4">
       <el-form-item name="mobile">
         <el-input size="large" placeholder="手机号码" v-model="formData.mobile" />
@@ -42,3 +43,4 @@ const formData = reactive({
   flex-wrap: nowrap;
 }
 </style>
+../hooks/useLogin
