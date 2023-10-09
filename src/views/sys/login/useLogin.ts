@@ -16,13 +16,3 @@ export const useLoginState = () => {
   };
   return { loginState, setLoginState };
 };
-
-export const usePasswordState = () => {
-  const passwordState = ref(false);
-
-  const setPasswordState = () => {
-    passwordState.value = !passwordState.value;
-  };
-
-  return { passwordState, setPasswordState };
-};
