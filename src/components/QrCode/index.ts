@@ -1,3 +1,3 @@
-import qrCode from "./src/index.vue";
+import qrCode from "./src/QrCode.vue";
 
 export const QrCode = qrCode;
