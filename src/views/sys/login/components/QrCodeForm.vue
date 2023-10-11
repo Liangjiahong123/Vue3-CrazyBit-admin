@@ -5,13 +5,15 @@ import { useLoginState, LoginStateEnum } from "../useLogin";
 
 const { loginState, setLoginState } = useLoginState();
 const showQrCodeLogin = computed(() => unref(loginState) === LoginStateEnum.QR_CODE);
+
+const qrCodeUrl = "https://vben.vvbin.cn/login";
 </script>
 
 <template>
   <main class="qrcode-form" v-show="showQrCodeLogin">
     <LoginFormTitle />
-    <QrCode />
-    <el-divider>扫码后点击"确认"，即可完成登录</el-divider>
+    <QrCode :value="qrCodeUrl" :width="280" />
+    <el-divider>扫码后点击"确认"即可登录</el-divider>
     <el-button
       plain
       size="large"

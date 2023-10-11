@@ -1,23 +1,38 @@
 <script lang="ts" setup>
+import { customToCanvas } from "./toCanvas";
+
 const props = defineProps({
-  tag: { type: String as PropType<"canvas" | "img">, default: "canvas" }
+  tag: { type: String as PropType<"canvas" | "img">, default: "canvas" },
+  value: { type: [String, Array], default: null },
+  width: { type: Number, default: 200 }
 });
+const emits = defineEmits(["error"]);
 
 const qrCodeRef = ref<HTMLCanvasElement | HTMLImageElement | null>(null);
-
-onMounted(() => {
+const createQrcode = async () => {
   try {
-    const { tag } = props;
-    const qrCodeEl = unref(qrCodeRef);
+    const { tag, value, width } = props;
+    const renderValue = String(value);
+    const qrcodeEl = unref(qrCodeRef);
 
-    if (!qrCodeEl) return;
+    if (!qrcodeEl) return;
 
     if (tag === "canvas") {
+      await customToCanvas({
+        canvas: qrcodeEl,
+        content: renderValue,
+        width
+      });
     }
-  } catch (err) {
-    console.log(err);
+
+    if (tag === "img") {
+    }
+  } catch (error) {
+    emits("error", error);
   }
-});
+};
+onMounted(createQrcode);
+watch(props, createQrcode, { deep: true });
 </script>
 
 <template>
