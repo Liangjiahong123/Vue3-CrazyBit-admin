@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { QrCode } from "@/components/QrCode";
 import LoginFormTitle from "./LoginFormTitle.vue";
 import { useLoginState, LoginStateEnum } from "../useLogin";
 

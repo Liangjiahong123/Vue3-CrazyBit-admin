@@ -13,7 +13,7 @@ const formData = reactive({
 
 <template>
   <main class="mobile-form" v-show="showMobileLogin">
-     <LoginFormTitle />
+    <LoginFormTitle />
     <el-form class="p-4">
       <el-form-item name="mobile">
         <el-input size="large" placeholder="手机号码" v-model="formData.mobile" />
@@ -43,4 +43,3 @@ const formData = reactive({
   flex-wrap: nowrap;
 }
 </style>
-../hooks/useLogin
