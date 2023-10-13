@@ -5,10 +5,13 @@ import MobileForm from "./components/MobileForm.vue";
 import QrCodeForm from "./components/QrCodeForm.vue";
 import ResetPasswordForm from "./components/ResetPasswordForm.vue";
 import RegisterForm from "./components/RegisterForm.vue";
+
+import { useClassName } from "@/hooks/web/useClassName";
+const { prefixCls } = useClassName("login");
 </script>
 
 <template>
-  <div class="crazybit-login relative w-full h-full px-4">
+  <div :class="prefixCls" class="relative w-full h-full px-4">
     <div class="-enter-x xl:hidden">
       <AppLogo alwaysShowTitle />
     </div>
@@ -19,7 +22,8 @@ import RegisterForm from "./components/RegisterForm.vue";
       </div>
       <div class="flex flex-col w-1/2 h-full mx-auto xl:h-auto">
         <div
-          class="crazybit-login-form w-full m-auto px-5 py-8 rounded-md shadow-md xl:ml-16 xl:w-2/3 xl:p-4 xl:bg-transparent xl:shadow-none"
+          :class="`${prefixCls}-form`"
+          class="w-full m-auto px-5 py-8 rounded-md shadow-md xl:ml-16 xl:w-2/3 xl:p-4 xl:bg-transparent xl:shadow-none"
         >
           <PasswordForm />
           <MobileForm />
