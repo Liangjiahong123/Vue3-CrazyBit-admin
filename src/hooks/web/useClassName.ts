@@ -1,10 +1,6 @@
-// import { createProvider } from "./useProvider";
-
-// const key: InjectionKey<string> = Symbol();
-const prefixName = "crazybit";
+import { useAppProvider } from "@/components/Application";
 
 export const useClassName = (scope: string) => {
-  // createProvider(key, prefixName);
-
-  return { prefixCls: `${prefixName}-${scope}`, prifixKey: prefixName };
+  const values = useAppProvider();
+  return { prefixCls: `${values.prefixCls}-${scope}`, prifixKey: values.prefixCls };
 };
