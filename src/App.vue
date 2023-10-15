@@ -1,11 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <RouterView />
+  <AppProvider>
+    <RouterView />
+  </AppProvider>
 </template>
 
-<style scoped lang="scss">
-h1 {
-  color: red;
-}
-</style>
+<style scoped lang="scss"></style>
