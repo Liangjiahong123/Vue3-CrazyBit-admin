@@ -1,4 +1,4 @@
-import { createProvider, useProvider } from "@/hooks/web/useProvider";
+import { createProvider, useProvider } from "@/hooks/basic/useProvider";
 
 interface AppProviderProps {
   prefixCls: Ref<string>;

@@ -22,6 +22,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@img/*": ["./src/assets/img/*"],
+      "@cpns/*": ["./src/components/*"],
       "#": ["./types/*"]
     }
   },
@@ -37,6 +38,7 @@
     "build/**/*.d.ts",
     "mock/**/*.ts",
     "vite.config.ts",
+    "components.d.ts",
     "auto-imports.d.ts"
   ],
   // 排除不需要编译的文件

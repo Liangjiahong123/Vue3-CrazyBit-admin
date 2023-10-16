@@ -1,15 +1,21 @@
 <script lang="ts" setup>
+import { useClassName } from "@/hooks/web/useClassName";
+
 defineProps({
   showTitle: { type: Boolean, default: true },
   title: { type: String, default: "CrazyBit Admin" },
   alwaysShowTitle: { type: Boolean, default: false }
 });
+
+const { prefixCls } = useClassName("app-logo");
+
+const getTitleCls = computed(() => `${prefixCls}-title`);
 </script>
 
 <template>
-  <div class="crazybit-app-logo flex items-center pl-4 cursor-pointer">
+  <div :class="prefixCls" class="flex items-center pl-4 cursor-pointer">
     <img src="@svg/logo.svg" class="w-32px h-32px xl:w-48px xl:h-48px" />
-    <div class="crazybit-app-logo-title truncate ml-2" v-show="showTitle">
+    <div :class="getTitleCls" class="truncate ml-2" v-show="showTitle">
       {{ title }}
     </div>
   </div>
