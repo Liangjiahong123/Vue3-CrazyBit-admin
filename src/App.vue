@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { AppProvider } from "@cpns/Application";
+</script>
 
 <template>
   <AppProvider>

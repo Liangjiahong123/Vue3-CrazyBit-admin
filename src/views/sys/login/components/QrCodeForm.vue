@@ -10,13 +10,13 @@ const qrCodeUrl = "https://vben.vvbin.cn/login";
 
 <template>
   <main class="qrcode-form" v-show="showQrCodeLogin">
-    <LoginFormTitle />
-    <QrCode :value="qrCodeUrl" :width="280" />
-    <el-divider>扫码后点击"确认"即可登录</el-divider>
+    <LoginFormTitle class="enter-x" />
+    <QrCode :value="qrCodeUrl" :width="280" class="enter-x" />
+    <el-divider class="enter-x">扫码后点击"确认"即可登录</el-divider>
     <el-button
       plain
       size="large"
-      class="w-full !rounded-lg mt-6"
+      class="enter-x w-full !rounded-lg mt-6"
       @click="setLoginState(LoginStateEnum.LOGIN)"
     >
       返回

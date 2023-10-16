@@ -13,22 +13,22 @@ const formData = reactive({
 
 <template>
   <main class="mobile-form" v-show="showMobileLogin">
-    <LoginFormTitle />
+    <LoginFormTitle class="enter-x" />
     <el-form class="p-4">
-      <el-form-item name="mobile">
+      <el-form-item name="mobile" class="enter-x">
         <el-input size="large" placeholder="手机号码" v-model="formData.mobile" />
       </el-form-item>
-      <el-form-item name="code">
+      <el-form-item name="code" class="enter-x">
         <el-input size="large" placeholder="短信验证码" v-model="formData.code" />
         <el-button size="large" class="ml-4" plain>短信验证码</el-button>
       </el-form-item>
 
-      <el-button type="primary" size="large" class="w-full !rounded-lg mt-6">
+      <el-button type="primary" size="large" class="enter-x w-full !rounded-lg mt-6">
         <span class="!text-16px !tracking-4px">登录</span>
       </el-button>
       <el-button
         size="large"
-        class="w-full !rounded-lg mt-6"
+        class="enter-x w-full !rounded-lg mt-6"
         plain
         @click="setLoginState(LoginStateEnum.LOGIN)"
       >
