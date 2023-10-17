@@ -26,8 +26,8 @@ const qrCodeUrl = "https://vben.vvbin.cn/login";
 
 <style lang="scss" scoped>
 :deep(.el-divider__text) {
+  padding: 0 10px;
   font-size: 12px;
   color: #999;
-  padding: 0 10px;
 }
 </style>
