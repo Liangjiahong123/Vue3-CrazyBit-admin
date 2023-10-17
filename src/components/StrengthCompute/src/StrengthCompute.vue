@@ -18,7 +18,7 @@ const getStrengthScore = computed(() => {
 </script>
 
 <template>
-  <div :class="prefixCls" class="relative w-full">
+  <div :class="prefixCls">
     <el-input v-model="innerValue" v-bind="$attrs" type="password" show-password />
 
     <div :class="`${prefixCls}-bar`">
@@ -30,6 +30,9 @@ const getStrengthScore = computed(() => {
 <style lang="scss" scoped>
 $prefix-cls: "#{$namespace}-strength-compute";
 .#{$prefix-cls} {
+  position: relative;
+  width: 100%;
+
   &-bar {
     margin: 10px auto 0;
     @apply relative h-6px rounded-6px bg-[#e6e8eb];
