@@ -40,5 +40,3 @@ watch(props, createQrcode, { deep: true });
     <component :is="tag" ref="qrCodeRef"></component>
   </div>
 </template>
-
-<style lang="scss" scoped></style>

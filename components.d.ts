@@ -22,5 +22,6 @@ declare module 'vue' {
     QrCode: typeof import('./src/components/QrCode/src/QrCode.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StrengthCompute: typeof import('./src/components/StrengthCompute/src/StrengthCompute.vue')['default']
   }
 }

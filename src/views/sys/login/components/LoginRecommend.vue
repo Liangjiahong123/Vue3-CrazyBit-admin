@@ -7,5 +7,3 @@
     <div class="-enter-x mt-5 text-white">输入您的个人详细信息开始使用！</div>
   </div>
 </template>
-
-<style lang="scss" scoped></style>

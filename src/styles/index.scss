@@ -1,7 +1,7 @@
 @charset "UTF-8";
-@import "./elementsCover.scss";
-@import "./mixins/index.scss";
-@import "./animate/entry.scss";
+
+@import "./elementsCover";
+@import "./animate/entry";
 
 html,
 body,
@@ -49,6 +49,7 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+
   &:focus,
   &:active {
     outline: none;
@@ -104,11 +105,11 @@ svg {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgb(0 0 0 / 5%);
+  background-color: rgb(0 0 0 / 0.05);
 }
 
 ::-webkit-scrollbar-thumb {
+  background-color: rgb(144 147 153 / 0.3);
   border-radius: 2px;
-  background-color: rgb(144 147 153 / 30%);
-  box-shadow: inset 0 0 6px rgb(0 0 0 / 20%);
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 0.2);
 }

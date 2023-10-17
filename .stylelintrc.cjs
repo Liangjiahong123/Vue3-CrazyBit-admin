@@ -17,9 +17,13 @@ module.exports = {
     "no-descending-specificity": null, // 不强制限制选择器的优先级
     "unicode-bom": "never", // 不强制使用UTF-8编码
     "font-family-no-missing-generic-family-keyword": null, // 不强制限制字体名称
-    "declaration-colon-space-after": "always", // 在冒号之后必须有一个空格
+    "declaration-colon-space-after": "always-single-line", // 在冒号之后必须有一个空格
     "declaration-colon-space-before": "never", // 在冒号之前不能有空白符
     "number-max-precision": 2, // 限制数字中允许的小数位数
+    "declaration-block-trailing-semicolon": null,
+    "no-descending-specificity": null,
+    "import-notation": "string",
+    "media-query-no-invalid": null,
     "unit-no-unknown": [true, { ignoreUnits: ["rpx"] }], // 禁止未知的单位,如rpx
     // 强制要求伪元素选择器使用正确的语法，并忽略 v-deep、v-global、v-slotted 选择器
     "selector-pseudo-element-no-unknown": [
@@ -28,11 +32,21 @@ module.exports = {
     ],
     // 强制要求伪类选择器使用正确的语法,并忽略 v-deep、v-global 选择器
     "selector-pseudo-class-no-unknown": [true, { ignorePseudoClasses: ["deep", "global"] }],
-    // 强制要求使用正确的 @ 规则,并忽略一些特殊的less指令
+    // 强制要求使用正确的 @ 规则,并忽略一些特殊的scss指令
     "at-rule-no-unknown": [
       true,
       {
-        ignoreAtRules: ["tailwind", "function", "if", "else", "else-if", "each", "include", "mixin"]
+        ignoreAtRules: [
+          "tailwind",
+          "for",
+          "if",
+          "else",
+          "else if",
+          "each",
+          "include",
+          "mixin",
+          "apply"
+        ]
       }
     ],
     // 强制要求 @ 规则之前有空行
@@ -41,7 +55,7 @@ module.exports = {
       {
         except: ["blockless-after-same-name-blockless", "first-nested"],
         ignore: ["after-comment"],
-        ignoreAtRules: ["else", "else-if"]
+        ignoreAtRules: ["else", "else-if", "tailwind", "apply", "include"]
       }
     ],
     // 指定书写样式的排序

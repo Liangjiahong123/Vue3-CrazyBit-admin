@@ -7,5 +7,3 @@ import { AppProvider } from "@cpns/Application";
     <RouterView />
   </AppProvider>
 </template>
-
-<style scoped lang="scss"></style>

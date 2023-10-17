@@ -34,13 +34,7 @@ const formData = reactive({
       </el-form-item>
 
       <el-form-item name="password" class="enter-x">
-        <el-input
-          size="large"
-          type="password"
-          placeholder="密码"
-          show-password
-          v-model="formData.password"
-        />
+        <StrengthCompute size="large" v-model:value="formData.password" placeholder="密码" />
       </el-form-item>
 
       <el-form-item name="confirmPassword" class="enter-x">

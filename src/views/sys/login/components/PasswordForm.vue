@@ -69,4 +69,3 @@ const formData = reactive({
     </el-form>
   </main>
 </template>
-../hooks/useLogin ../useLogin

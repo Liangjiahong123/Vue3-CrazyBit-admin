@@ -13,9 +13,9 @@ const getTitleCls = computed(() => `${prefixCls}-title`);
 </script>
 
 <template>
-  <div :class="prefixCls" class="flex items-center pl-4 cursor-pointer">
-    <img src="@svg/logo.svg" class="w-32px h-32px xl:w-48px xl:h-48px" />
-    <div :class="getTitleCls" class="truncate ml-2" v-show="showTitle">
+  <div :class="prefixCls" class="flex items-center">
+    <img src="@svg/logo.svg" class="w-32px h-32px xl:(w-48px h-48px)" />
+    <div :class="getTitleCls" v-show="showTitle">
       {{ title }}
     </div>
   </div>
@@ -25,14 +25,13 @@ const getTitleCls = computed(() => `${prefixCls}-title`);
 $prefix-cls: "#{$namespace}-app-logo";
 
 .#{$prefix-cls} {
-  height: 80px;
   transition: all 0.2s ease;
+  @apply pl-4 cursor-pointer h-80px;
 
   &-title {
-    font-weight: 700;
-    font-size: 16px;
     line-height: normal;
     transition: all 0.5s;
+    @apply truncate ml-2 font-weight-700 text-16px;
   }
 }
 </style>
