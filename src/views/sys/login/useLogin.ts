@@ -19,8 +19,21 @@ export const useLoginState = () => {
   return { getLoginState, setLoginState };
 };
 
-export const useFormVaild = (formRef: FormInstance | undefined) => {
-  return {};
+export const useFormVaild = (formRef: Ref<FormInstance | undefined>) => {
+  const getValidate = computed(() => {});
+
+  const validForm = async () => {
+    try {
+      const formEl = unref(formRef);
+      if (!formEl) return;
+      const validResult = await formEl.validate();
+      return validResult;
+    } catch (error) {
+      console.log("请输入正确的登录信息");
+    }
+  };
+
+  return { getValidate, validForm };
 };
 
 export const useFormRules = (formData?: Recordable) => {
@@ -54,8 +67,10 @@ export const useFormRules = (formData?: Recordable) => {
         };
       case LoginStateEnum.RESET_PASSWORD:
         return { ...mobileFormRules, account: accountRule };
-      default:
+      case LoginStateEnum.LOGIN:
         return passwordFormRules;
+      default:
+        return {};
     }
   });
 
