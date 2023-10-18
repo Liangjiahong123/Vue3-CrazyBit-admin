@@ -1,28 +1,30 @@
 <script lang="ts" setup>
 import LoginFormTitle from "./LoginFormTitle.vue";
-import { useLoginState, LoginStateEnum } from "../useLogin";
+import { useLoginState, LoginStateEnum, useFormRules } from "../useLogin";
 
-const { loginState, setLoginState } = useLoginState();
-const showResetPwd = computed(() => unref(loginState) === LoginStateEnum.RESET_PASSWORD);
+const { getLoginState, setLoginState } = useLoginState();
+const showResetPwd = computed(() => unref(getLoginState) === LoginStateEnum.RESET_PASSWORD);
 
 const formData = reactive({
   account: "",
   mobile: "",
   code: ""
 });
+
+const { getFormRules } = useFormRules(formData);
 </script>
 
 <template>
-  <main class="reset-pwd-form" v-show="showResetPwd">
+  <main class="reset-pwd-form" v-if="showResetPwd">
     <LoginFormTitle class="enter-x" />
-    <el-form class="enter-x p-4">
-      <el-form-item name="account" class="enter-x">
+    <el-form :model="formData" :rules="getFormRules" class="enter-x p-4">
+      <el-form-item prop="account" class="enter-x">
         <el-input size="large" placeholder="账号" v-model="formData.account" />
       </el-form-item>
-      <el-form-item name="mobile" class="enter-x">
+      <el-form-item prop="mobile" class="enter-x">
         <el-input size="large" placeholder="手机号码" v-model="formData.mobile" />
       </el-form-item>
-      <el-form-item name="code" class="enter-x">
+      <el-form-item prop="code" class="enter-x">
         <el-input size="large" placeholder="短信验证码" v-model="formData.code" />
         <el-button size="large" class="ml-4" plain>短信验证码</el-button>
       </el-form-item>

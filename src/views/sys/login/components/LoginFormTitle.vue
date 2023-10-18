@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLoginState, LoginStateEnum } from "../useLogin";
 
-const { loginState } = useLoginState();
+const { getLoginState } = useLoginState();
 
 const titleMap = {
   [LoginStateEnum.LOGIN]: "登录",
@@ -10,7 +10,7 @@ const titleMap = {
   [LoginStateEnum.MOBILE]: "手机登录",
   [LoginStateEnum.QR_CODE]: "二维码登录"
 };
-const loginTitle = computed(() => titleMap[unref(loginState)]);
+const loginTitle = computed(() => titleMap[unref(getLoginState)]);
 </script>
 
 <template>

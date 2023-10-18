@@ -1,25 +1,30 @@
 <script lang="ts" setup>
 import LoginFormTitle from "./LoginFormTitle.vue";
-import { useLoginState, LoginStateEnum } from "../useLogin";
+import { useLoginState, LoginStateEnum, useFormVaild, useFormRules } from "../useLogin";
 
-const { loginState, setLoginState } = useLoginState();
-const showPwdLogin = computed(() => unref(loginState) === LoginStateEnum.LOGIN);
+const { getLoginState, setLoginState } = useLoginState();
+const showPwdLogin = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
+
+const formRef = ref();
+// const {} = useFormVaild(formRef.value);
 
 const formData = reactive({
   account: "crazybit",
   password: "123456",
   rememberMe: false
 });
+
+const { getFormRules } = useFormRules();
 </script>
 
 <template>
   <main v-show="showPwdLogin" class="password-form">
     <LoginFormTitle class="enter-x" />
-    <el-form class="enter-x p-4">
-      <el-form-item name="account" class="enter-x">
+    <el-form :rules="getFormRules" :model="getFormRules" class="enter-x p-4" ref="formRef">
+      <el-form-item prop="account" class="enter-x">
         <el-input size="large" placeholder="账号" v-model="formData.account" />
       </el-form-item>
-      <el-form-item name="password" class="enter-x">
+      <el-form-item prop="password" class="enter-x">
         <el-input
           size="large"
           type="password"

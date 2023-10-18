@@ -1,25 +1,27 @@
 <script lang="ts" setup>
 import LoginFormTitle from "./LoginFormTitle.vue";
-import { useLoginState, LoginStateEnum } from "../useLogin";
+import { useLoginState, LoginStateEnum, useFormRules } from "../useLogin";
 
-const { loginState, setLoginState } = useLoginState();
-const showMobileLogin = computed(() => unref(loginState) === LoginStateEnum.MOBILE);
+const { getLoginState, setLoginState } = useLoginState();
+const showMobileLogin = computed(() => unref(getLoginState) === LoginStateEnum.MOBILE);
 
 const formData = reactive({
   mobile: "",
   code: ""
 });
+
+const { getFormRules } = useFormRules();
 </script>
 
 <template>
-  <main class="mobile-form" v-show="showMobileLogin">
+  <main class="mobile-form" v-if="showMobileLogin">
     <LoginFormTitle class="enter-x" />
-    <el-form class="p-4">
-      <el-form-item name="mobile" class="enter-x">
-        <el-input size="large" placeholder="手机号码" v-model="formData.mobile" />
+    <el-form :model="formData" :rules="getFormRules" class="enter-x p-4">
+      <el-form-item prop="mobile" class="enter-x">
+        <el-input v-model="formData.mobile" maxlength="11" size="large" placeholder="手机号码" />
       </el-form-item>
-      <el-form-item name="code" class="enter-x">
-        <el-input size="large" placeholder="短信验证码" v-model="formData.code" />
+      <el-form-item prop="code" class="enter-x">
+        <el-input v-model="formData.code" size="large" placeholder="短信验证码" />
         <el-button size="large" class="ml-4" plain>短信验证码</el-button>
       </el-form-item>
 
