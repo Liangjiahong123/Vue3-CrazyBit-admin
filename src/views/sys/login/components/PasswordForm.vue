@@ -6,7 +6,7 @@ const { getLoginState, setLoginState } = useLoginState();
 const showPwdLogin = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
 
 const formRef = ref();
-// const {} = useFormVaild(formRef.value);
+const { validForm } = useFormVaild(formRef);
 
 const formData = reactive({
   account: "crazybit",
@@ -15,12 +15,29 @@ const formData = reactive({
 });
 
 const { getFormRules } = useFormRules();
+
+const handleLogin = async () => {
+  const valid = await validForm();
+  if (!valid) return;
+
+  try {
+    console.log("登录成功");
+  } catch (error) {
+    console.log("登录失败");
+  }
+};
 </script>
 
 <template>
   <main v-show="showPwdLogin" class="password-form">
     <LoginFormTitle class="enter-x" />
-    <el-form :rules="getFormRules" :model="getFormRules" class="enter-x p-4" ref="formRef">
+    <el-form
+      :model="formData"
+      :rules="getFormRules"
+      class="enter-x p-4"
+      ref="formRef"
+      @keypress.enter="handleLogin"
+    >
       <el-form-item prop="account" class="enter-x">
         <el-input size="large" placeholder="账号" v-model="formData.account" />
       </el-form-item>
@@ -50,7 +67,12 @@ const { getFormRules } = useFormRules();
         </el-col>
       </el-row>
 
-      <el-button type="primary" size="large" class="w-full !rounded-lg mt-6 enter-x">
+      <el-button
+        type="primary"
+        size="large"
+        class="w-full !rounded-lg mt-6 enter-x"
+        @click="handleLogin"
+      >
         <span class="!text-16px !tracking-4px">登录</span>
       </el-button>
 
