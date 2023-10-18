@@ -10,7 +10,9 @@ const emits = defineEmits(["update:value"]);
 const { prefixCls } = useClassName("strength-compute");
 
 const innerValue = ref("");
+
 watch(innerValue, (val) => emits("update:value", unref(val)));
+
 const getStrengthScore = computed(() => {
   const score = unref(innerValue) ? zxcvbn(unref(innerValue)).score : -1;
   return score;

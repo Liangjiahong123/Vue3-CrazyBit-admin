@@ -2,8 +2,8 @@
 import LoginFormTitle from "./LoginFormTitle.vue";
 import { useLoginState, LoginStateEnum } from "../useLogin";
 
-const { loginState, setLoginState } = useLoginState();
-const showQrCodeLogin = computed(() => unref(loginState) === LoginStateEnum.QR_CODE);
+const { getLoginState, setLoginState } = useLoginState();
+const showQrCodeLogin = computed(() => unref(getLoginState) === LoginStateEnum.QR_CODE);
 
 const qrCodeUrl = "https://vben.vvbin.cn/login";
 </script>

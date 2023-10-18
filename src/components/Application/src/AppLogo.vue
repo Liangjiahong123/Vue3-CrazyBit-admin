@@ -14,7 +14,7 @@ const getTitleCls = computed(() => `${prefixCls}-title`);
 
 <template>
   <div :class="prefixCls" class="flex items-center">
-    <img src="@svg/logo.svg" class="w-32px h-32px xl:(w-48px h-48px)" />
+    <img src="@svg/logo.svg" alt="CrazyBit Admin" class="w-32px h-32px xl:(w-48px h-48px)" />
     <div :class="getTitleCls" v-show="showTitle">
       {{ title }}
     </div>
