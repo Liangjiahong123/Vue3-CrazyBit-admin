@@ -14,6 +14,8 @@ const formData = reactive({
   rememberMe: false
 });
 
+const loading = ref(false);
+
 const { getFormRules } = useFormRules();
 
 const handleLogin = async () => {
@@ -21,9 +23,12 @@ const handleLogin = async () => {
   if (!valid) return;
 
   try {
+    loading.value = true;
     console.log("登录成功");
   } catch (error) {
     console.log("登录失败");
+  } finally {
+    loading.value = false;
   }
 };
 </script>
@@ -71,6 +76,7 @@ const handleLogin = async () => {
         type="primary"
         size="large"
         class="w-full !rounded-lg mt-6 enter-x"
+        :loading="loading"
         @click="handleLogin"
       >
         <span class="!text-16px !tracking-4px">登录</span>

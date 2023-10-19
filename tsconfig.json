@@ -23,7 +23,7 @@
       "@/*": ["./src/*"],
       "@img/*": ["./src/assets/img/*"],
       "@cpns/*": ["./src/components/*"],
-      "#": ["./types/*"]
+      "#/*": ["./types/*"]
     }
   },
   // 需要编译的文件
