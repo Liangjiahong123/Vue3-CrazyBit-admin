@@ -1,2 +1,5 @@
 import { HttpRequest } from "./request";
-export const http = new HttpRequest({ baseURL: "" });
+
+const http = new HttpRequest({ baseURL: "/api" });
+
+export default http;
