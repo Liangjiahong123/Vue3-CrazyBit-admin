@@ -8,9 +8,20 @@ import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import WindiCSS from "vite-plugin-windicss";
 import AutoImport from "unplugin-auto-import/vite";
+import { viteMockServe } from "vite-plugin-mock";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    port: 5173,
+    proxy: {
+      "/api": {
+        target: "http://localhost:5173",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, "")
+      }
+    }
+  },
   plugins: [
     vue(),
     WindiCSS(),
@@ -35,6 +46,11 @@ export default defineConfig({
           }
         }
       ]
+    }),
+    viteMockServe({
+      ignore: /^_/,
+      mockPath: "mock",
+      enable: true
     })
   ],
   resolve: {

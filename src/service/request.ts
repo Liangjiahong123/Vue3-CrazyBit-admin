@@ -43,4 +43,16 @@ export class HttpRequest {
         });
     });
   }
+
+  get<T = any>(config: AxiosRequestConfig): Promise<T> {
+    return this.request({ ...config, method: "GET" });
+  }
+
+  post<T = any>(config: AxiosRequestConfig): Promise<T> {
+    return this.request({
+      ...config,
+      method: "POST",
+      headers: { "content-Type": "application/json" }
+    });
+  }
 }

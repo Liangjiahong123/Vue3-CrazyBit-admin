@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import LoginFormTitle from "./LoginFormTitle.vue";
 import { useLoginState, LoginStateEnum, useFormVaild, useFormRules } from "../useLogin";
+import { loginApi } from "@/api/sys/user";
 
 const { getLoginState, setLoginState } = useLoginState();
 const showPwdLogin = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
@@ -24,6 +25,8 @@ const handleLogin = async () => {
 
   try {
     loading.value = true;
+    const data = await loginApi({ username: formData.account, password: formData.password });
+    console.log(data);
     console.log("登录成功");
   } catch (error) {
     console.log("登录失败");
