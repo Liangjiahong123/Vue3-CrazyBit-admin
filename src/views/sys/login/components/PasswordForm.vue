@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import LoginFormTitle from "./LoginFormTitle.vue";
 import { useLoginState, LoginStateEnum, useFormVaild, useFormRules } from "../useLogin";
-import { loginApi } from "@/api/sys/user";
+import { useUserStore } from "@/stores/modules/user";
 
 const { getLoginState, setLoginState } = useLoginState();
 const showPwdLogin = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
+
+const userStore = useUserStore();
 
 const formRef = ref();
 const { validForm } = useFormVaild(formRef);
@@ -22,22 +24,18 @@ const { getFormRules } = useFormRules();
 const handleLogin = async () => {
   const valid = await validForm();
   if (!valid) return;
-
-  try {
-    loading.value = true;
-    const data = await loginApi({ username: formData.account, password: formData.password });
-    console.log(data);
-    console.log("登录成功");
-  } catch (error) {
-    console.log("登录失败");
-  } finally {
-    loading.value = false;
-  }
+  loading.value = true;
+  await userStore.loginAction({
+    username: formData.account,
+    password: formData.password
+  });
+  loading.value = false;
 };
 </script>
 
 <template>
   <main v-show="showPwdLogin" class="password-form">
+    <span>{{ loading }}</span>
     <LoginFormTitle class="enter-x" />
     <el-form
       :model="formData"

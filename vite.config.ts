@@ -48,9 +48,10 @@ export default defineConfig({
       ]
     }),
     viteMockServe({
-      ignore: /^_/,
+      ignore: /^\_/,
       mockPath: "mock",
-      enable: true
+      enable: true,
+      logger: false
     })
   ],
   resolve: {

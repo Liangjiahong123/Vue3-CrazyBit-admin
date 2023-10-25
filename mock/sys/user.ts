@@ -1,5 +1,5 @@
 import { MockMethod } from "vite-plugin-mock";
-import { resultSuccess } from "../_utils";
+import { resultSuccess, resultError } from "../_utils";
 
 const userMaps = [
   {
@@ -38,7 +38,7 @@ const userMaps = [
 
 export default [
   {
-    url: "/api/login",
+    url: "/api/user/login",
     timeout: 2400,
     method: "post",
     response: ({ query }) => {
@@ -47,15 +47,17 @@ export default [
         (item) => item.username === username && password === item.password
       );
 
-      if (!vaildUser)
-        return {
-          code: 401,
-          msg: "Invalid username or password!"
-        };
+      if (!vaildUser) return resultError();
 
       const { userId, username: _username, token, realName, desc, roles } = vaildUser;
 
       return resultSuccess({ roles, userId, username: _username, token, realName, desc });
     }
+  },
+  {
+    url: "/api/user/info",
+    method: "get",
+    timeout: 2400
+    // response: () => resultSuccess(userMaps[0])
   }
 ] as MockMethod[];
