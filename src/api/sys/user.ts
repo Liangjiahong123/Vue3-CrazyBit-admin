@@ -1,10 +1,11 @@
 import http from "@/service";
-import type { LoginParams } from "./types/userType";
+import type { LoginParams, LoginResponse } from "./types/userType";
 
 enum Api {
-  Login = "/login"
+  Login = "/user/login",
+  GetUserInfo = "/user/info"
 }
 
-export const loginApi = (params: LoginParams) => {
-  return http.post({ url: Api.Login, params });
-};
+export const loginApi = (params: LoginParams) => http.post({ url: Api.Login, params });
+
+export const getUserInfoApi = () => http.get<LoginResponse>({ url: Api.GetUserInfo });

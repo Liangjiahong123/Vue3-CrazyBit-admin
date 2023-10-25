@@ -49,10 +49,6 @@ export class HttpRequest {
   }
 
   post<T = any>(config: AxiosRequestConfig): Promise<T> {
-    return this.request({
-      ...config,
-      method: "POST",
-      headers: { "content-Type": "application/json" }
-    });
+    return this.request({ ...config, method: "POST" });
   }
 }
