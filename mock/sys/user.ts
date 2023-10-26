@@ -1,5 +1,5 @@
 import { MockMethod } from "vite-plugin-mock";
-import { resultSuccess, resultError } from "../_utils";
+import { resultSuccess, resultError, getReqToken, RequestParams } from "../_utils";
 
 const userMaps = [
   {
@@ -10,7 +10,6 @@ const userMaps = [
     desc: "manager",
     password: "123456",
     token: "fakeToken1",
-    homePath: "/dashboard/analysis",
     roles: [
       {
         roleName: "Super Admin",
@@ -26,7 +25,6 @@ const userMaps = [
     avatar: "",
     desc: "tester",
     token: "fakeToken2",
-    homePath: "/dashboard/workbench",
     roles: [
       {
         roleName: "Tester",
@@ -49,15 +47,21 @@ export default [
 
       if (!vaildUser) return resultError();
 
-      const { userId, username: _username, token, realName, desc, roles } = vaildUser;
-
-      return resultSuccess({ roles, userId, username: _username, token, realName, desc });
+      const { username: _username, token, userId } = vaildUser;
+      return resultSuccess({ username: _username, userId, token });
     }
   },
   {
     url: "/api/user/info",
     method: "get",
-    timeout: 2400
-    // response: () => resultSuccess(userMaps[0])
+    timeout: 2400,
+    response: (req: RequestParams) => {
+      const token = getReqToken(req);
+      if (!token) return resultError("Invalid token", { code: 401 });
+
+      const vaildUser = userMaps.find((item) => item.token === token);
+      if (!vaildUser) return resultError("The corresponding user information was not obtained!");
+      return resultSuccess(vaildUser);
+    }
   }
 ] as MockMethod[];

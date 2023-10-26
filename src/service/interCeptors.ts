@@ -1,10 +1,10 @@
 import type { InternalAxiosRequestConfig, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export interface RequestOptions extends AxiosRequestConfig {
-  interceptors?: RequestInterCeptors;
+  interceptors?: InterCeptors;
 }
 
-export interface RequestInterCeptors {
+export interface InterCeptors {
   // 用于请求发送之前的处理
   handleConfigHook?: (config: AxiosRequestConfig, options: RequestOptions) => AxiosRequestConfig;
 
@@ -21,14 +21,24 @@ export interface RequestInterCeptors {
   handleRequestFailedHook?: (error: Error, options: RequestOptions) => Promise<any>;
 
   // 请求拦截
-  requestInterceptor: (
-    config: InternalAxiosRequestConfig,
-    options: RequestOptions
-  ) => InternalAxiosRequestConfig;
+  requestInterceptor?: (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig;
 
   // 响应拦截
-  responseInterceptor: (
-    config: InternalAxiosRequestConfig,
-    options: RequestOptions
-  ) => InternalAxiosRequestConfig;
+  responseInterceptor?: (res: AxiosResponse<any>) => AxiosResponse<any>;
 }
+
+export const interceptors: InterCeptors = {
+  requestInterceptor: (config) => {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = token;
+    }
+    return config;
+  },
+
+  responseInterceptor: (res) => res,
+
+  handleReqInterceptorErrHook: (error) => Promise.reject(error),
+
+  handleResInterceptorErrHook: (error) => Promise.reject(error)
+};

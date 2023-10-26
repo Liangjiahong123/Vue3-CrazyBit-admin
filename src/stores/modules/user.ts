@@ -1,8 +1,13 @@
 import { defineStore } from "pinia";
 import { store } from "@/stores";
+import { router } from "@/router";
+
 import { loginApi, getUserInfoApi } from "@/api/sys/user";
+import { LoginResponse } from "@/api/sys/types/userType";
 import { isArray } from "@/utils/vaildate";
 import { RoleEnum } from "@/enums/roleEnum";
+import { PageEnum } from "@/enums/pageEnum";
+
 import type { LoginParams } from "@/api/sys/types/userType";
 import type { UserInfo } from "#/store";
 
@@ -23,24 +28,26 @@ export const useUserStore = defineStore("user", {
     getUserInfo: ({ userInfo }) => userInfo
   },
   actions: {
-    async loginAction(payload: LoginParams) {
+    async loginAction(payload: LoginParams): Promise<LoginResponse | null> {
       try {
         const { token } = await loginApi(payload);
         this.setToken(token);
-        this.loginNextAction();
+        return this.loginNextAction();
       } catch (error) {
         return Promise.reject(error);
       }
     },
 
-    async loginNextAction() {
-      if (!this.getToken) return;
-      this.getUserInfoAction();
-      // this.userInfo = await getUserInfoApi();
+    async loginNextAction(): Promise<LoginResponse | null> {
+      if (!this.getToken) return null;
+      const userInfo = await this.getUserInfoAction();
+      await router.replace(PageEnum.BASE_HOME);
+
+      return userInfo;
     },
 
-    async getUserInfoAction() {
-      if (!this.getToken) return;
+    async getUserInfoAction(): Promise<UserInfo | null> {
+      if (!this.getToken) return null;
       const userInfo = await getUserInfoApi();
 
       if (isArray(userInfo?.roles)) {
@@ -52,10 +59,13 @@ export const useUserStore = defineStore("user", {
       }
 
       this.setUserInfo(userInfo);
+
+      return userInfo;
     },
 
     setToken(payload: string | undefined) {
       this.token = payload || "";
+      window.localStorage.setItem("token", this.token);
     },
 
     setUserInfo(payload: Nullable<UserInfo>) {
