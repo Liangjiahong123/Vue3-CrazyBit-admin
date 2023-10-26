@@ -7,5 +7,4 @@ export interface UserInfo {
   avatar: string;
   roles: RoleInfo[];
   desc?: string;
-  homePath?: string;
 }

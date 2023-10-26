@@ -9,6 +9,7 @@ import type {
 
 import type { RequestOptions } from "./interCeptors";
 import { ResponseData } from "#/http";
+import { isFunction } from "@/utils/vaildate";
 
 export class HttpRequest {
   private instance: AxiosInstance;
@@ -22,13 +23,34 @@ export class HttpRequest {
   }
 
   private setupInterceptors() {
+    const { interceptors } = this.options;
+    if (!interceptors) return;
+    const {
+      requestInterceptor,
+      responseInterceptor,
+      handleReqInterceptorErrHook,
+      handleResInterceptorErrHook
+    } = interceptors;
+
     this.instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+      if (isFunction(requestInterceptor)) {
+        config = requestInterceptor(config);
+      }
       return config;
     });
 
+    isFunction(handleReqInterceptorErrHook) &&
+      this.instance.interceptors.request.use(undefined, handleReqInterceptorErrHook);
+
     this.instance.interceptors.response.use((res: AxiosResponse<any>) => {
+      if (isFunction(responseInterceptor)) {
+        res = responseInterceptor(res);
+      }
       return res.data;
     });
+
+    isFunction(handleResInterceptorErrHook) &&
+      this.instance.interceptors.request.use(undefined, handleResInterceptorErrHook);
   }
 
   request<T = any>(config: AxiosRequestConfig): Promise<T> {

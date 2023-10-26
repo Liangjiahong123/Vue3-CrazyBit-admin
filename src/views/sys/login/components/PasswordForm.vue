@@ -24,18 +24,23 @@ const { getFormRules } = useFormRules();
 const handleLogin = async () => {
   const valid = await validForm();
   if (!valid) return;
-  loading.value = true;
-  await userStore.loginAction({
-    username: formData.account,
-    password: formData.password
-  });
-  loading.value = false;
+  try {
+    loading.value = true;
+    const userInfo = await userStore.loginAction({
+      username: formData.account,
+      password: formData.password
+    });
+    console.log(userInfo);
+  } catch ({ message }: any) {
+    console.log(message);
+  } finally {
+    loading.value = false;
+  }
 };
 </script>
 
 <template>
   <main v-show="showPwdLogin" class="password-form">
-    <span>{{ loading }}</span>
     <LoginFormTitle class="enter-x" />
     <el-form
       :model="formData"
