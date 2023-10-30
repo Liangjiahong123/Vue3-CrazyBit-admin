@@ -41,15 +41,14 @@ export const useUserStore = defineStore("user", {
     async loginNextAction(): Promise<LoginResponse | null> {
       if (!this.getToken) return null;
       const userInfo = await this.getUserInfoAction();
-      await router.replace(PageEnum.BASE_HOME);
 
+      await router.replace(PageEnum.BASE_HOME);
       return userInfo;
     },
 
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null;
       const userInfo = await getUserInfoApi();
-
       if (isArray(userInfo?.roles)) {
         const roleList = userInfo?.roles.map((item) => item.value) as RoleEnum[];
         this.setRoleList(roleList);

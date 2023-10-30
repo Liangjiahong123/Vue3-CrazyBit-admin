@@ -7,23 +7,23 @@ import type {
   AxiosError
 } from "axios";
 
-import type { RequestOptions } from "./interCeptors";
-import { ResponseData } from "#/http";
+import type { CreateHttpOptions } from "./interCeptors";
+import { ResponseData, RequestOptions } from "#/http";
 import { isFunction } from "@/utils/vaildate";
 
 export class HttpRequest {
   private instance: AxiosInstance;
-  private readonly options: RequestOptions;
+  private readonly createOptions: CreateHttpOptions;
 
-  constructor(options: RequestOptions) {
-    this.options = options;
+  constructor(options: CreateHttpOptions) {
+    this.createOptions = options;
     this.instance = axios.create(options);
 
     this.setupInterceptors();
   }
 
   private setupInterceptors() {
-    const { interceptors } = this.options;
+    const { interceptors } = this.createOptions;
     if (!interceptors) return;
     const {
       requestInterceptor,
@@ -42,23 +42,30 @@ export class HttpRequest {
     isFunction(handleReqInterceptorErrHook) &&
       this.instance.interceptors.request.use(undefined, handleReqInterceptorErrHook);
 
-    this.instance.interceptors.response.use((res: AxiosResponse<any>) => {
+    this.instance.interceptors.response.use((res: AxiosResponse) => {
       if (isFunction(responseInterceptor)) {
         res = responseInterceptor(res);
       }
-      return res.data;
+      return res;
     });
 
     isFunction(handleResInterceptorErrHook) &&
       this.instance.interceptors.request.use(undefined, handleResInterceptorErrHook);
   }
 
-  request<T = any>(config: AxiosRequestConfig): Promise<T> {
+  request<T = any>(config: AxiosRequestConfig, options: RequestOptions): Promise<T> {
+    const { handleResponseHook } = this.createOptions.interceptors || {};
     return new Promise((resolve, reject) => {
       this.instance
-        .request<any, ResponseData<T>>(config)
+        .request<any, AxiosResponse<ResponseData<T>>>(config)
         .then((res) => {
-          resolve(res.result);
+          if (isFunction(handleResponseHook)) {
+            try {
+              // const ret = handleResponseHook(res, opt);
+              // resolve(res);
+            } catch {}
+          }
+          resolve(res as unknown as Promise<T>);
         })
         .catch((e: Error | AxiosError) => {
           reject(e);
@@ -66,11 +73,11 @@ export class HttpRequest {
     });
   }
 
-  get<T = any>(config: AxiosRequestConfig): Promise<T> {
-    return this.request({ ...config, method: "GET" });
+  get<T = any>(config: AxiosRequestConfig, options: RequestOptions): Promise<T> {
+    return this.request({ ...config, method: "GET" }, options);
   }
 
-  post<T = any>(config: AxiosRequestConfig): Promise<T> {
-    return this.request({ ...config, method: "POST" });
+  post<T = any>(config: AxiosRequestConfig, options: RequestOptions): Promise<T> {
+    return this.request({ ...config, method: "POST" }, options);
   }
 }
