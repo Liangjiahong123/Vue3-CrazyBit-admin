@@ -2,11 +2,12 @@
 import LoginFormTitle from "./LoginFormTitle.vue";
 import { useLoginState, LoginStateEnum, useFormVaild, useFormRules } from "../useLogin";
 import { useUserStore } from "@/stores/modules/user";
+import { useMessage } from "@/hooks/web/useMessage";
 
+const { createNotify } = useMessage();
+const userStore = useUserStore();
 const { getLoginState, setLoginState } = useLoginState();
 const showPwdLogin = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
-
-const userStore = useUserStore();
 
 const formRef = ref();
 const { validForm } = useFormVaild(formRef);
@@ -30,9 +31,11 @@ const handleLogin = async () => {
       username: formData.account,
       password: formData.password
     });
-    console.log(userInfo);
+    if (userInfo) {
+      createNotify({ message: `欢迎${userInfo.realName}回来`, title: "登录成功" });
+    }
   } catch ({ message }: any) {
-    console.log(message);
+    createNotify({ message, type: "error", title: "登录失败" });
   } finally {
     loading.value = false;
   }

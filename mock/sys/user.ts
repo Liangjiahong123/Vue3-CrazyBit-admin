@@ -45,7 +45,7 @@ export default [
         (item) => item.username === username && password === item.password
       );
 
-      if (!vaildUser) return resultError();
+      if (!vaildUser) return resultError("账号或密码错误");
 
       const { username: _username, token, userId } = vaildUser;
       return resultSuccess({ username: _username, userId, token });
@@ -57,8 +57,7 @@ export default [
     timeout: 2400,
     response: (req: RequestParams) => {
       const token = getReqToken(req);
-      if (!token) return resultError("Invalid token", { code: 401 });
-
+      if (!token) return resultError("获取用户信息失败");
       const vaildUser = userMaps.find((item) => item.token === token);
       if (!vaildUser) return resultError("The corresponding user information was not obtained!");
       return resultSuccess(vaildUser);

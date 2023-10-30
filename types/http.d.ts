@@ -4,3 +4,8 @@ export interface ResponseData<T = any> {
   message: string;
   result: T;
 }
+
+export interface RequestOptions {
+  getNativeRes?: boolean; // 是否需要请求头数据
+  getResponseCode?: boolean; // 是否需要响应状态
+}
