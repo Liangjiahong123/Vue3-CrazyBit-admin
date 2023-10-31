@@ -7,21 +7,19 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AppLogo: typeof import('./src/components/Application/src/AppLogo.vue')['default']
-    AppProvider: typeof import('./src/components/Application/src/AppProvider.vue')['default']
+    AppLogo: typeof import('./../src/components/Application/AppLogo.vue')['default']
+    AppProvider: typeof import('./../src/components/Application/AppProvider.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElIcon: (typeof import("element-plus/es"))["ElIcon"]
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElMain: (typeof import("element-plus/es"))["ElMain"]
     ElRow: typeof import('element-plus/es')['ElRow']
-    QrCode: typeof import('./src/components/QrCode/src/QrCode.vue')['default']
+    QrCode: typeof import('./../src/components/QrCode/QrCode.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    StrengthCompute: typeof import('./src/components/StrengthCompute/src/StrengthCompute.vue')['default']
+    StrengthCompute: typeof import('./../src/components/StrengthCompute/StrengthCompute.vue')['default']
   }
 }

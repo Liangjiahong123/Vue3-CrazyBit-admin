@@ -4,7 +4,7 @@ import { useLoginState, LoginStateEnum, useFormVaild, useFormRules } from "../us
 import { useUserStore } from "@/stores/modules/user";
 import { useMessage } from "@/hooks/web/useMessage";
 
-const { createNotify } = useMessage();
+const { createNotify, createMessage } = useMessage();
 const userStore = useUserStore();
 const { getLoginState, setLoginState } = useLoginState();
 const showPwdLogin = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
@@ -35,7 +35,7 @@ const handleLogin = async () => {
       createNotify({ message: `欢迎${userInfo.realName}回来`, title: "登录成功" });
     }
   } catch ({ message }: any) {
-    createNotify({ message, type: "error", title: "登录失败" });
+    createMessage({ type: "error", message });
   } finally {
     loading.value = false;
   }

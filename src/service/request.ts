@@ -55,16 +55,20 @@ export class HttpRequest {
 
   request<T = any>(config: AxiosRequestConfig, options: RequestOptions): Promise<T> {
     const { handleResponseHook } = this.createOptions.interceptors || {};
+    const reqOption = Object.assign({}, options);
     return new Promise((resolve, reject) => {
       this.instance
-        .request<any, AxiosResponse<ResponseData<T>>>(config)
+        .request<any, AxiosResponse<ResponseData>>(config)
         .then((res) => {
           if (isFunction(handleResponseHook)) {
             try {
-              // const ret = handleResponseHook(res, opt);
-              // resolve(res);
-            } catch {}
+              const hres = handleResponseHook(res, reqOption);
+              resolve(hres);
+            } catch (err) {
+              reject(err || "请求错误");
+            }
           }
+
           resolve(res as unknown as Promise<T>);
         })
         .catch((e: Error | AxiosError) => {

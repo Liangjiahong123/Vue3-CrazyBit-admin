@@ -28,12 +28,14 @@ export default defineConfig({
     legacyPlugin({ targets: ["defaults", "not IE 11"] }),
     createHtmlPlugin({ minify: true }),
     Components({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver()],
+      dts: "types/components.d.ts"
     }),
     AutoImport({
       resolvers: [ElementPlusResolver()],
       imports: ["vue", "vue-router"],
-      eslintrc: { enabled: true }
+      eslintrc: { enabled: true },
+      dts: "types/auto-imports.d.ts"
     }),
     createStyleImportPlugin({
       resolves: [ElementPlusResolve()],

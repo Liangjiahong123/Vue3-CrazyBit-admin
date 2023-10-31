@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { store } from "@/stores";
 import { router } from "@/router";
 
 import { loginApi, getUserInfoApi } from "@/api/sys/user";

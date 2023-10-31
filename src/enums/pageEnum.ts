@@ -4,5 +4,3 @@ export enum PageEnum {
   BASE_ERROR = "/exception", // page path
   BASE_ERROR_LOG = "/error-log/list" //   // error log page path
 }
-
-export const PageWrapperFixedHeightKey = "PageWrapperFixedHeight";
