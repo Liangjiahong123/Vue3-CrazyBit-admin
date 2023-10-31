@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
   <div class="my-auto -enter-x">
     <img class="w-1/2 -enter-x" src="@svg/login-box-bg.svg" />

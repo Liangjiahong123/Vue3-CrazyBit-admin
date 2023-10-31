@@ -2,8 +2,9 @@ import type { InternalAxiosRequestConfig, AxiosRequestConfig, AxiosResponse } fr
 import { RequestOptions } from "#/http";
 import { ResultCodeEnum } from "@/enums/httpEnum";
 import { useMessage } from "@/hooks/web/useMessage";
+import { isEmpty, isNull, isUndefined } from "@/utils/vaildate";
 
-const { createNotify } = useMessage();
+const { createMessage } = useMessage();
 
 export interface CreateHttpOptions extends AxiosRequestConfig {
   interceptors?: InterCeptors; // 拦截器
@@ -53,32 +54,32 @@ export const interceptors: InterCeptors = {
 
   // 响应数据的处理
   handleResponseHook: (res, options) => {
-    const { getResponseCode, getNativeRes } = options;
+    const { getResponseCode, getNativeRes, showMessage } = options;
     // 如果需要响应头，则不作处理
     if (getNativeRes) return res;
     // 如果需要响应状态,则返回响应体
     if (getResponseCode) return res.data;
     // 否则根据数据和状态码进行处理
-    if (!res.data) Promise.reject(new Error("请求失败"));
+    if (!res.data) throw new Error("请求失败");
     // 请求成功并返回数据
     const { code, result, message } = res.data;
-    const getSuccess = res.data && Reflect.has(res.data, "code") && code === ResultCodeEnum.SUCCESS;
-    if (getSuccess) {
-      if (message) {
-        return result;
-      }
+
+    if (code === ResultCodeEnum.SUCCESS) {
+      let successMsg = message;
+      if (!message) successMsg = "操作成功";
+      if (showMessage) createMessage({ message: successMsg });
+      return result;
     }
-    const errorMsg = handleErrorCode(code, message);
+
+    let errMsg = message;
+    switch (code) {
+      case ResultCodeEnum.ERROR:
+        !message && (errMsg = "请求失败");
+        break;
+      case ResultCodeEnum.TIMEOUT:
+        !message && (errMsg = "请求超时");
+    }
+    if (showMessage) createMessage({ type: "error", message: errMsg });
+    throw new Error(errMsg || "请求失败");
   }
 };
-
-function handleErrorCode(code: number, defaultMsg: string) {
-  // switch (code) {
-  //   case ResultCodeEnum.TIMEOUT:
-  //     createNotify.error("登录超时");
-  //     break;
-  //   default:
-  //     createNotify.error(defaultMsg);
-  //     break;
-  // }
-}
