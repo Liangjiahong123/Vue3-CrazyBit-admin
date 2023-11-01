@@ -7,8 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AppLanguageToggle: typeof import('./../src/components/Application/AppLanguageToggle.vue')['default']
     AppLogo: typeof import('./../src/components/Application/AppLogo.vue')['default']
     AppProvider: typeof import('./../src/components/Application/AppProvider.vue')['default']
+    AppThemeToggle: typeof import('./../src/components/Application/AppThemeToggle.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCol: typeof import('element-plus/es')['ElCol']
@@ -17,6 +19,7 @@ declare module 'vue' {
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElRow: typeof import('element-plus/es')['ElRow']
+    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     QrCode: typeof import('./../src/components/QrCode/QrCode.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
