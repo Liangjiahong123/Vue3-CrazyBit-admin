@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { Sunny, Moon } from "@element-plus/icons-vue";
 import { useDark } from "@vueuse/core";
-import { useAppStore } from "@/stores/modules/app";
 import { ThemeEnum } from "@/enums/appEnum";
+import { useAppSetting } from "@/hooks/settings/useAppSetting";
 
 const isDark = useDark({ disableTransition: false });
-const { setDarkMode } = useAppStore();
+const { setDarkMode } = useAppSetting();
 
 const handleToggleMode = () => {
   const darkMode = unref(isDark) ? ThemeEnum.DARK : ThemeEnum.LIGHT;
