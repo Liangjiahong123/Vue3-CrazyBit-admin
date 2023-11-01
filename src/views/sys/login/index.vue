@@ -12,9 +12,15 @@ const { prefixCls } = useClassName("login");
 
 <template>
   <div :class="prefixCls">
+    <div class="align-center absolute top-4 right-4">
+      <AppThemeToggle class="enter-x mr-2" />
+      <AppLanguageToggle class="enter-x" />
+    </div>
+
     <div class="-enter-x xl:hidden">
       <AppLogo alwaysShowTitle />
     </div>
+
     <div class="container flex">
       <div class="hidden min-h-full pl-4 mr-4 xl:(flex flex-col w-1/2)">
         <AppLogo class="-enter-x" />
