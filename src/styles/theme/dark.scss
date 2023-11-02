@@ -1,0 +1,9 @@
+html.dark {
+  .crazybit-login {
+    background-color: #151515;
+
+    &::before {
+      background-image: url("@svg/login-bg-dark.svg");
+    }
+  }
+}

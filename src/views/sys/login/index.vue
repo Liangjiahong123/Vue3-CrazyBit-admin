@@ -48,7 +48,7 @@ $dark-bg: #293146;
   @apply w-full h-full px-4 min-h-full overflow-hidden relative;
 
   &::before {
-    @apply absolute top-0 left-0 w-full h-full -ml-[48%] -z-1;
+    @apply absolute top-0 left-0 w-full h-full -ml-[48%];
 
     content: "";
     @include bg("svg/login-bg.svg");

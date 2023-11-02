@@ -45,7 +45,8 @@ module.exports = {
           "each",
           "include",
           "mixin",
-          "apply"
+          "apply",
+          "forward"
         ]
       }
     ],
