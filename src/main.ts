@@ -1,7 +1,7 @@
 import "normalize.css";
-import "./styles/index.scss";
 import "virtual:windi.css";
 import "element-plus/theme-chalk/dark/css-vars.css";
+import "./styles/index.scss";
 
 import { createApp } from "vue";
 

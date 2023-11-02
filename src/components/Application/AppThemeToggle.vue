@@ -5,6 +5,7 @@ import { ThemeEnum } from "@/enums/appEnum";
 import { useAppSetting } from "@/hooks/settings/useAppSetting";
 
 const isDark = useDark({ disableTransition: false });
+
 const { setDarkMode } = useAppSetting();
 
 const handleToggleMode = () => {
@@ -38,10 +39,5 @@ $dark-color: #151515;
       color: yellow;
     }
   }
-
-  /* &:deep(.is-checked .el-switch__core) {
-    background-color: $dark-color;
-    border-color: #fff !important;
-  } */
 }
 </style>
