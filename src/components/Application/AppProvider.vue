@@ -5,6 +5,7 @@ const props = defineProps({
 });
 
 const { prefixCls } = toRefs(props);
+
 createAppProvider({ prefixCls });
 </script>
 

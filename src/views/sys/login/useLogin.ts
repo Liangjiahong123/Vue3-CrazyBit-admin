@@ -16,21 +16,17 @@ export const useLoginState = () => {
   const setLoginState = (state: LoginStateEnum) => {
     currentState.value = state;
   };
+
   return { getLoginState, setLoginState };
 };
 
 export const useFormVaild = (formRef: Ref<FormInstance | undefined>) => {
   const getValidate = computed(() => {});
 
-  const validForm = async () => {
-    try {
-      const formEl = unref(formRef);
-      if (!formEl) return;
-      const validResult = await formEl.validate();
-      return validResult;
-    } catch (error) {
-      console.log("请输入正确的登录信息");
-    }
+  const validForm = () => {
+    const formEl = unref(formRef);
+    if (!formEl) return;
+    return formEl.validate((vaild) => vaild);
   };
 
   return { getValidate, validForm };
@@ -40,10 +36,10 @@ export const useFormRules = (formData?: Recordable) => {
   const accountRule = createRule("请输入账号");
   const passwordRule = createRule("请输入密码");
   const mobileRule = createRule("请输入手机号");
-  const codeRule = createRule("请输入验证码");
+  const authCodeRule = createRule("请输入验证码");
 
   const passwordFormRules = { account: accountRule, password: passwordRule };
-  const mobileFormRules = { mobile: mobileRule, code: codeRule };
+  const mobileFormRules = { mobile: mobileRule, authCode: authCodeRule };
 
   const validatePolicy = (_: any, value: boolean, callback: any) => {
     if (!value) callback(new Error("请勾选相关协议"));

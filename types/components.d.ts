@@ -7,7 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AppLanguageToggle: typeof import('./../src/components/Application/AppLanguageToggle.vue')['default']
+    AppLocaleToggle: typeof import('./../src/components/Application/AppLocaleToggle.vue')['default']
     AppLogo: typeof import('./../src/components/Application/AppLogo.vue')['default']
     AppProvider: typeof import('./../src/components/Application/AppProvider.vue')['default']
     AppThemeToggle: typeof import('./../src/components/Application/AppThemeToggle.vue')['default']
@@ -15,8 +15,12 @@ declare module 'vue' {
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElDivider: typeof import('element-plus/es')['ElDivider']
+    ElDropdown: typeof import('element-plus/es')['ElDropdown']
+    ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
+    ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
