@@ -14,7 +14,7 @@ const { prefixCls } = useClassName("login");
   <div :class="prefixCls">
     <div class="align-center absolute top-4 right-4">
       <AppThemeToggle class="enter-x mr-2" />
-      <AppLanguageToggle class="enter-x" />
+      <AppLocaleToggle class="enter-x" />
     </div>
 
     <div class="-enter-x xl:hidden">

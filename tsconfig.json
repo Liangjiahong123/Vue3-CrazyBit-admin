@@ -37,9 +37,7 @@
     "build/**/*.ts",
     "build/**/*.d.ts",
     "mock/**/*.ts",
-    "vite.config.ts",
-    "components.d.ts",
-    "auto-imports.d.ts"
+    "vite.config.ts"
   ],
   // 排除不需要编译的文件
   "exclude": ["node_modules", "dist", "**/*.js"]

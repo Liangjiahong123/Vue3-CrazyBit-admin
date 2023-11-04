@@ -7,7 +7,7 @@ const showMobileLogin = computed(() => unref(getLoginState) === LoginStateEnum.M
 
 const formData = reactive({
   mobile: "",
-  code: ""
+  authCode: ""
 });
 
 const { getFormRules } = useFormRules();
@@ -20,8 +20,8 @@ const { getFormRules } = useFormRules();
       <el-form-item prop="mobile" class="enter-x">
         <el-input v-model="formData.mobile" maxlength="11" size="large" placeholder="手机号码" />
       </el-form-item>
-      <el-form-item prop="code" class="enter-x">
-        <el-input v-model="formData.code" size="large" placeholder="短信验证码" />
+      <el-form-item prop="authCode" class="enter-x">
+        <el-input v-model="formData.authCode" size="large" placeholder="短信验证码" />
         <el-button size="large" class="ml-4" plain>短信验证码</el-button>
       </el-form-item>
 

@@ -5,7 +5,6 @@ import { ThemeEnum } from "@/enums/appEnum";
 import { useAppSetting } from "@/hooks/settings/useAppSetting";
 
 const isDark = useDark({ disableTransition: false });
-
 const { setDarkMode } = useAppSetting();
 
 const handleToggleMode = () => {
