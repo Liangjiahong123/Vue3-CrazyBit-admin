@@ -13,12 +13,12 @@ import App from "./App.vue";
 
 async function bootstrap() {
   const app = createApp(App);
-  // 初始化路由
-  setupRouter(app);
   // 初始化store
   setupStore(app);
   //初始化i18n
   setupI18n(app);
+  // 初始化路由
+  setupRouter(app);
 
   app.mount("#app");
 }
