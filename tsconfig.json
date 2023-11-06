@@ -16,7 +16,7 @@
     "skipLibCheck": true, // 跳过检查内置类型定义库
     "baseUrl": "./", // 项目根目录
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"], // 指定要包含在编译中的库文件
-    "types": ["node"], // 指定要包含的类型定义文件
+    "types": ["node", "vite/client"], // 指定要包含的类型定义文件
     "typeRoots": ["./node_modules/@types/", "./types"], // 指定类型定义文件的搜索目录
     // 指定模块路径映射
     "paths": {
