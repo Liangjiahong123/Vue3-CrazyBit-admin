@@ -1,4 +1,7 @@
-export const formatMsg = (modules: Recordable<Recordable>, prefix: string) => {
+import { set } from "lodash-es";
+
+export const createMsgConfig = (modules: Recordable<Recordable>, prefix: string) => {
+  const msgConfig: Recordable = {};
   Object.keys(modules).forEach((key) => {
     // 获取文件内容
     const langFileContent = modules[key].default;
@@ -12,5 +15,18 @@ export const formatMsg = (modules: Recordable<Recordable>, prefix: string) => {
     const moduleName = keyList.shift();
     // 转化为字符串形式
     const objKey = keyList.join("");
+
+    if (!moduleName) return {};
+    if (objKey) {
+      // 如果objKey不为空，则代表是在某大模块下的
+      // 设置成{ moduleName: { module1: {...}, module2: {...} } }
+      set(msgConfig, `${moduleName}[${objKey}]`, langFileContent || {});
+    } else {
+      // 如果为空，则代表是单模块文
+      // 设置成{ moduleName: {...} }
+      set(msgConfig, moduleName, langFileContent || {});
+    }
   });
+
+  return msgConfig;
 };

@@ -3,10 +3,13 @@ import LoginFormTitle from "./LoginFormTitle.vue";
 import { useLoginState, LoginStateEnum, useFormVaild, useFormRules } from "../useLogin";
 import { useUserStore } from "@/stores/modules/user";
 import { useMessage } from "@/hooks/web/useMessage";
+import { useI18n } from "@/hooks/web/useI18n";
 
+const { t } = useI18n("sys.login");
 const { createNotify, createMessage } = useMessage();
 const userStore = useUserStore();
 const { getLoginState, setLoginState } = useLoginState();
+
 const showPwdLogin = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
 
 const formRef = ref();
@@ -76,7 +79,7 @@ const handleLogin = async () => {
             link
             @click="setLoginState(LoginStateEnum.RESET_PASSWORD)"
           >
-            忘记密码?
+            {{ t("forgetPswdButton") }}
           </el-button>
         </el-col>
       </el-row>
