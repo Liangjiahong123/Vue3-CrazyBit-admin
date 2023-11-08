@@ -5,7 +5,7 @@ export default {
     mobileFormTitle: "Mobile sign in",
     qrCodeFormTitle: "Qr code sign in",
     registerFormTitle: "Sign up",
-    forgetFormTitle: "Reset Your Password",
+    resetFormTitle: "Reset Your Password",
 
     // logo
     logoTitle: "Based on ElementPlus+Vue3 background management system",

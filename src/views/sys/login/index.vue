@@ -26,7 +26,7 @@ const { prefixCls } = useClassName("login");
         <AppLogo class="-enter-x" />
         <LoginRecommend />
       </div>
-      <div class="flex flex-col w-1/2 h-full mx-auto xl:h-auto">
+      <div class="flex flex-col h-full mx-auto xl:(h-auto w-1/2)">
         <div :class="`${prefixCls}-form`" class="enter-x">
           <PasswordForm />
           <MobileForm />
@@ -48,10 +48,12 @@ $dark-bg: #293146;
   @apply w-full h-full px-4 min-h-full overflow-hidden relative;
 
   &::before {
-    @apply absolute top-0 left-0 w-full h-full -ml-[48%];
+    @apply absolute top-0 -left-[48%] w-full h-full bg-no-repeat;
 
+    background-position: 100%;
+    background-size: auto 100%;
+    background-image: url("@/assets/svg/login-bg.svg");
     content: "";
-    @include bg("svg/login-bg.svg");
   }
 
   .#{$logo-prefix-cls} {
@@ -64,20 +66,22 @@ $dark-bg: #293146;
   .container {
     @apply h-full mx-auto py-2 sm:px-10;
 
-    .#{$logo-prefix-cls} {
-      &-title {
-        font-size: 24px;
-        color: #fff;
-      }
+    .#{$logo-prefix-cls}-title {
+      font-size: 24px;
+      color: #fff;
     }
 
     .#{$prefix-cls}-form {
-      @apply w-full m-auto px-5 py-8 rounded-md shadow-md xl:(ml-16 w-auto p-4 bg-transparent shadow-none);
+      @apply min-w-360px w-full m-auto px-5 py-8 rounded-md shadow-md  xl:(ml-16 w-auto p-4 bg-transparent shadow-none);
     }
   }
 
-  @media (max-width: $screen-xl) {
+  @media (max-width: $screen-lg) {
     background-color: $dark-bg;
+
+    &::before {
+      display: none;
+    }
 
     .#{$prefix-cls}-form {
       background-color: #fff;

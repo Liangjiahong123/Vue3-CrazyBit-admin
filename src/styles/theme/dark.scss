@@ -1,9 +1,20 @@
 html.dark {
   .crazybit-login {
-    background-color: #151515;
+    background-color: #293146;
 
     &::before {
       background-image: url("@svg/login-bg-dark.svg");
+    }
+
+    @media (max-width: $screen-lg) {
+      &-form {
+        .el-checkbox__label,
+        .el-input__inner,
+        .el-button.is-plain,
+        h2 {
+          color: black;
+        }
+      }
     }
   }
 }

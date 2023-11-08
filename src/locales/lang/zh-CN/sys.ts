@@ -5,7 +5,7 @@ export default {
     mobileFormTitle: "手机登录",
     qrCodeFormTitle: "二维码登录",
     registerFormTitle: "注册",
-    forgetFormTitle: "重置密码",
+    resetFormTitle: "重置密码",
 
     // logo
     logoTitle: "基于ElementPlus+Vue3后台管理系统",
