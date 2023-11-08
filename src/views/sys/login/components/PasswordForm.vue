@@ -70,7 +70,7 @@ const handleLogin = async () => {
 
       <el-row class="enter-x">
         <el-col :span="12" class="flex items-center">
-          <el-checkbox v-model="formData.rememberMe" label="记住我" />
+          <el-checkbox v-model="formData.rememberMe" :label="t('remeberChecked')" />
         </el-col>
         <el-col :span="12" class="text-right">
           <el-button
@@ -91,23 +91,23 @@ const handleLogin = async () => {
         :loading="loading"
         @click="handleLogin"
       >
-        <span class="!text-16px !tracking-4px">登录</span>
+        <span class="!text-16px !tracking-4px">{{ t("loginButton") }}</span>
       </el-button>
 
       <el-row :gutter="20" class="mt-6 enter-x">
         <el-col :span="8">
           <el-button plain class="w-full" @click="setLoginState(LoginStateEnum.MOBILE)">
-            手机登录
+            {{ t("mobileFormTitle") }}
           </el-button>
         </el-col>
         <el-col :span="8">
           <el-button plain class="w-full" @click="setLoginState(LoginStateEnum.QR_CODE)">
-            二维码登录
+            {{ t("qrCodeFormTitle") }}
           </el-button>
         </el-col>
         <el-col :span="8">
           <el-button plain class="w-full" @click="setLoginState(LoginStateEnum.REGISTER)">
-            注册
+            {{ t("registerFormTitle") }}
           </el-button>
         </el-col>
       </el-row>

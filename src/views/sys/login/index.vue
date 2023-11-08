@@ -72,7 +72,7 @@ $dark-bg: #293146;
     }
 
     .#{$prefix-cls}-form {
-      @apply w-full m-auto px-5 py-8 rounded-md shadow-md xl:(ml-16 w-2/3 p-4 bg-transparent shadow-none);
+      @apply w-full m-auto px-5 py-8 rounded-md shadow-md xl:(ml-16 w-auto p-4 bg-transparent shadow-none);
     }
   }
 
