@@ -94,18 +94,18 @@ const handleLogin = async () => {
         <span class="!text-16px !tracking-4px">{{ t("loginButton") }}</span>
       </el-button>
 
-      <el-row :gutter="20" class="mt-6 enter-x">
-        <el-col :span="8">
+      <el-row :gutter="20" class="mt-6 enter-x <sm:(flex flex-col)">
+        <el-col :span="8" class="<sm:(!max-w-full)">
           <el-button plain class="w-full" @click="setLoginState(LoginStateEnum.MOBILE)">
             {{ t("mobileFormTitle") }}
           </el-button>
         </el-col>
-        <el-col :span="8">
+        <el-col :span="8" class="<sm:(mt-7px !max-w-full)">
           <el-button plain class="w-full" @click="setLoginState(LoginStateEnum.QR_CODE)">
             {{ t("qrCodeFormTitle") }}
           </el-button>
         </el-col>
-        <el-col :span="8">
+        <el-col :span="8" class="<sm:(mt-7px !max-w-full)">
           <el-button plain class="w-full" @click="setLoginState(LoginStateEnum.REGISTER)">
             {{ t("registerFormTitle") }}
           </el-button>

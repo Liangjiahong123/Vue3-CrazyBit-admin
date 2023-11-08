@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { useLoginState, LoginStateEnum } from "../useLogin";
+import { useI18n } from "@/hooks/web/useI18n";
 
 const { getLoginState } = useLoginState();
+const { t } = useI18n("sys.login");
 
 const titleMap = {
-  [LoginStateEnum.LOGIN]: "登录",
-  [LoginStateEnum.REGISTER]: "注册",
-  [LoginStateEnum.RESET_PASSWORD]: "重置密码",
-  [LoginStateEnum.MOBILE]: "手机登录",
-  [LoginStateEnum.QR_CODE]: "二维码登录"
+  [LoginStateEnum.LOGIN]: t("passwordFormTitle"),
+  [LoginStateEnum.REGISTER]: t("registerFormTitle"),
+  [LoginStateEnum.RESET_PASSWORD]: t("resetFormTitle"),
+  [LoginStateEnum.MOBILE]: t("mobileFormTitle"),
+  [LoginStateEnum.QR_CODE]: t("qrCodeFormTitle")
 };
 const loginTitle = computed(() => titleMap[unref(getLoginState)]);
 </script>
 
 <template>
-  <h2 class="mb-3 text-3xl font-bold">{{ loginTitle }}</h2>
+  <h2 class="mb-3 text-2xl font-bold text-center xl:(text-3xl enter-x text-left)">
+    {{ loginTitle }}
+  </h2>
 </template>
