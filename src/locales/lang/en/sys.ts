@@ -2,8 +2,8 @@ export default {
   login: {
     //login type
     passwordFormTitle: "Sign in",
-    mobileFormTitle: "Sign in with mobile",
-    qrCodeFormTitle: "Sign in with Qr Code",
+    mobileFormTitle: "Mobile sign in",
+    qrCodeFormTitle: "Qr code sign in",
     registerFormTitle: "Sign up",
     forgetFormTitle: "Reset Your Password",
 
