@@ -1,6 +1,8 @@
 html.dark {
+  $theme-color: #293146;
+
   .crazybit-login {
-    background-color: #293146;
+    background-color: $theme-color;
 
     &::before {
       background-image: url("@svg/login-bg-dark.svg");
@@ -14,6 +16,18 @@ html.dark {
         h2 {
           color: black;
         }
+      }
+    }
+
+    .qrcode-form .el-divider__text {
+      padding: 0 10px 0 20px;
+      background-color: $theme-color;
+    }
+
+    .register-form .crazybit-strength-compute-bar {
+      &::after,
+      &::before {
+        border-color: $theme-color;
       }
     }
   }

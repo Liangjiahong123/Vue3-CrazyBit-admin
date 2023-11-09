@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 import LoginFormTitle from "./LoginFormTitle.vue";
 import { useLoginState, LoginStateEnum, useFormRules } from "../useLogin";
+import { useI18n } from "@/hooks/web/useI18n";
 
 const { getLoginState, setLoginState } = useLoginState();
+const { t } = useI18n("sys.login");
+
 const showRegsiter = computed(() => unref(getLoginState) === LoginStateEnum.REGISTER);
 
 const formData = reactive({
@@ -21,40 +24,44 @@ const { getFormRules } = useFormRules(formData);
   <main class="register-form" v-if="showRegsiter">
     <LoginFormTitle class="enter-x" />
 
-    <el-form :model="formData" :rules="getFormRules" class="p-4 enter-x">
+    <el-form :model="formData" :rules="getFormRules" class="p-4 enter-x w-sm">
       <el-form-item prop="account" class="enter-x">
-        <el-input size="large" placeholder="账号" v-model="formData.account" />
+        <el-input size="large" :placeholder="t('accountPlaceholder')" v-model="formData.account" />
       </el-form-item>
 
       <el-form-item prop="mobile" class="enter-x">
-        <el-input size="large" placeholder="手机号码" v-model="formData.mobile" />
+        <el-input size="large" :placeholder="t('mobilePlaceholder')" v-model="formData.mobile" />
       </el-form-item>
 
       <el-form-item prop="code" class="enter-x">
-        <el-input size="large" placeholder="短信验证码" v-model="formData.code" />
-        <el-button size="large" class="ml-4" plain>短信验证码</el-button>
+        <el-input size="large" :placeholder="t('authCodePlaceholder')" v-model="formData.code" />
+        <el-button size="large" class="ml-4">{{ t("authCodeButton") }}</el-button>
       </el-form-item>
 
       <el-form-item prop="password" class="enter-x">
-        <StrengthCompute size="large" v-model:value="formData.password" placeholder="密码" />
+        <StrengthCompute
+          size="large"
+          v-model:value="formData.password"
+          :placeholder="t('passwordPlaceholder')"
+        />
       </el-form-item>
 
       <el-form-item prop="confirmPassword" class="enter-x">
         <el-input
           size="large"
           type="password"
-          placeholder="确认密码"
+          :placeholder="t('confirmPwdPlaceholder')"
           show-password
           v-model="formData.confirmPassword"
         />
       </el-form-item>
 
       <el-form-item prop="policy" class="enter-x">
-        <el-checkbox v-model="formData.policy" label="我同意xxx隐私政策" />
+        <el-checkbox v-model="formData.policy" :label="t('policyChecked')" />
       </el-form-item>
 
       <el-button type="primary" size="large" class="w-full !rounded-lg mt-4 enter-x">
-        <span class="!text-16px !tracking-4px">注册</span>
+        <span class="!text-16px !tracking-4px">{{ t("registerButton") }}</span>
       </el-button>
       <el-button
         size="large"
@@ -62,7 +69,7 @@ const { getFormRules } = useFormRules(formData);
         plain
         @click="setLoginState(LoginStateEnum.LOGIN)"
       >
-        <span class="!text-16px !tracking-4px">返回</span>
+        <span class="!text-16px !tracking-4px">{{ t("backButton") }}</span>
       </el-button>
     </el-form>
   </main>
