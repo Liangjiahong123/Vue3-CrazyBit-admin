@@ -6,7 +6,7 @@ import type { App } from "vue";
 export let i18n: ReturnType<typeof createI18n>;
 
 export const creaetI18nConfig = async (): Promise<I18nOptions> => {
-  const lang = "en";
+  const lang = "zh-CN";
   const langConfig = await import(`./lang/${lang}.ts`);
   const langContent = langConfig?.default?.content ?? {};
 

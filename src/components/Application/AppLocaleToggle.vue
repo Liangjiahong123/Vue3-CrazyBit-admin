@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ArrowDown, Edit } from "@element-plus/icons-vue";
+import { ArrowDown } from "@element-plus/icons-vue";
 const localeText = ref("简体中文");
 
 const handleMenuClick = (lang: string) => {

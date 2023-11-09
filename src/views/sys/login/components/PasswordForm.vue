@@ -35,10 +35,13 @@ const handleLogin = async () => {
       password: formData.password
     });
     if (userInfo) {
-      createNotify({ message: `欢迎${userInfo.realName}回来`, title: "登录成功" });
+      createNotify({
+        message: `${t("loginSuccessDesc")}: ${userInfo.realName}`,
+        title: t("loginSuccessTitle")
+      });
     }
-  } catch ({ message }: any) {
-    createMessage({ type: "error", message });
+  } catch (e: any) {
+    createMessage({ type: "error", message: e.message || t("sys.api.networkExceptionMsg") });
   } finally {
     loading.value = false;
   }
@@ -56,20 +59,20 @@ const handleLogin = async () => {
       @keypress.enter="handleLogin"
     >
       <el-form-item prop="account" class="enter-x">
-        <el-input size="large" placeholder="账号" v-model="formData.account" />
+        <el-input size="large" :placeholder="t('accountPlaceholder')" v-model="formData.account" />
       </el-form-item>
       <el-form-item prop="password" class="enter-x">
         <el-input
           size="large"
           type="password"
-          placeholder="密码"
+          :placeholder="t('passwordPlaceholder')"
           show-password
           v-model="formData.password"
         />
       </el-form-item>
 
       <el-row class="enter-x">
-        <el-col :span="12" class="flex items-center">
+        <el-col :span="12">
           <el-checkbox v-model="formData.rememberMe" :label="t('remeberChecked')" />
         </el-col>
         <el-col :span="12" class="text-right">

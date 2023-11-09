@@ -1,4 +1,7 @@
 export default {
+  api: {
+    networkExceptionMsg: "Network Error"
+  },
   login: {
     //login type
     passwordFormTitle: "Sign in",
@@ -16,6 +19,8 @@ export default {
     backButton: "Back",
     registerButton: "Sign up",
     forgetPswdButton: "Forget password?",
+    authCodeButton: "Send",
+    resetButton: "Reset",
 
     // checked
     policyChecked: "I agree to the xxx Privacy Policy",

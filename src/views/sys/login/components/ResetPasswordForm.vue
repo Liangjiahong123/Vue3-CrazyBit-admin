@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 import LoginFormTitle from "./LoginFormTitle.vue";
 import { useLoginState, LoginStateEnum, useFormRules } from "../useLogin";
+import { useI18n } from "@/hooks/web/useI18n";
 
 const { getLoginState, setLoginState } = useLoginState();
+const { t } = useI18n("sys.login");
+
 const showResetPwd = computed(() => unref(getLoginState) === LoginStateEnum.RESET_PASSWORD);
 
 const formData = reactive({
@@ -17,20 +20,20 @@ const { getFormRules } = useFormRules(formData);
 <template>
   <main class="reset-pwd-form" v-if="showResetPwd">
     <LoginFormTitle class="enter-x" />
-    <el-form :model="formData" :rules="getFormRules" class="enter-x p-4">
+    <el-form :model="formData" :rules="getFormRules" class="enter-x p-4 w-sm">
       <el-form-item prop="account" class="enter-x">
-        <el-input size="large" placeholder="账号" v-model="formData.account" />
+        <el-input size="large" :placeholder="t('accountPlaceholder')" v-model="formData.account" />
       </el-form-item>
       <el-form-item prop="mobile" class="enter-x">
-        <el-input size="large" placeholder="手机号码" v-model="formData.mobile" />
+        <el-input size="large" :placeholder="t('mobilePlaceholder')" v-model="formData.mobile" />
       </el-form-item>
       <el-form-item prop="code" class="enter-x">
-        <el-input size="large" placeholder="短信验证码" v-model="formData.code" />
-        <el-button size="large" class="ml-4" plain>短信验证码</el-button>
+        <el-input size="large" :placeholder="t('authCodePlaceholder')" v-model="formData.code" />
+        <el-button size="large" class="ml-4">{{ t("authCodeButton") }}</el-button>
       </el-form-item>
 
       <el-button type="primary" size="large" class="enter-x w-full !rounded-lg mt-6">
-        <span class="!text-16px !tracking-4px">重置</span>
+        <span class="!text-16px !tracking-4px">{{ t("resetButton") }}</span>
       </el-button>
       <el-button
         size="large"
@@ -38,7 +41,7 @@ const { getFormRules } = useFormRules(formData);
         plain
         @click="setLoginState(LoginStateEnum.LOGIN)"
       >
-        <span class="!text-16px !tracking-4px">返回</span>
+        <span class="!text-16px">{{ t("backButton") }}</span>
       </el-button>
     </el-form>
   </main>

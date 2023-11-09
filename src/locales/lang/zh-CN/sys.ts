@@ -1,4 +1,7 @@
 export default {
+  api: {
+    networkExceptionMsg: "网络错误"
+  },
   login: {
     //login type
     passwordFormTitle: "登录",
@@ -14,8 +17,10 @@ export default {
     // button
     loginButton: "登录",
     backButton: "返回",
+    resetButton: "重置",
     registerButton: "注册",
     forgetPswdButton: "忘记密码?",
+    authCodeButton: "发送短信",
 
     // checked
     policyChecked: "我同意xxx隐私政策",
