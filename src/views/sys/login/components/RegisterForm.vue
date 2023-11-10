@@ -24,7 +24,7 @@ const { getFormRules } = useFormRules(formData);
   <main class="register-form" v-if="showRegsiter">
     <LoginFormTitle class="enter-x" />
 
-    <el-form :model="formData" :rules="getFormRules" class="p-4 enter-x w-sm">
+    <el-form :model="formData" :rules="getFormRules" class="p-4 enter-x">
       <el-form-item prop="account" class="enter-x">
         <el-input size="large" :placeholder="t('accountPlaceholder')" v-model="formData.account" />
       </el-form-item>

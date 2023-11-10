@@ -18,7 +18,7 @@ const formData = reactive({
 <template>
   <main class="mobile-form" v-if="showMobileLogin">
     <LoginFormTitle class="enter-x" />
-    <el-form :model="formData" :rules="getFormRules" class="enter-x p-4 w-sm">
+    <el-form :model="formData" :rules="getFormRules" class="enter-x p-4">
       <el-form-item prop="mobile" class="enter-x">
         <el-input
           v-model="formData.mobile"

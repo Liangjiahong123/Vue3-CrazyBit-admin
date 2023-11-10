@@ -4,6 +4,6 @@ export enum ThemeEnum {
 }
 
 export enum LocaleEnum {
-  ZH_CN = "zh_CN",
+  ZH_CN = "zh-CN",
   EN = "en"
 }
