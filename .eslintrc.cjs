@@ -50,6 +50,16 @@ module.exports = {
     "no-var": "error", // 要求使用 let 或 const 而不是 var
     "no-new": "off",
     "eol-last": "off",
-    "no-shadow": "off"
+    "no-shadow": "off",
+    // 如果插件配置修改了相关选项,则必须添加相对应的规则,否则会出现格式化后ESlint检查无法通过的情况。
+    "prettier/prettier": [
+      "warn",
+      {
+        printWidth: 100,
+        singleQuote: false,
+        bracketSpacing: true,
+        htmlWhitespaceSensitivity: "ignore"
+      }
+    ]
   }
 };
