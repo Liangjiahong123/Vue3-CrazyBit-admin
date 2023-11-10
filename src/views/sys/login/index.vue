@@ -21,12 +21,12 @@ const { prefixCls } = useClassName("login");
       <AppLogo alwaysShowTitle />
     </div>
 
-    <div class="container flex">
+    <div class="container flex h-full justify-center mx-auto">
       <div class="hidden min-h-full pl-4 mr-4 xl:(flex flex-col w-1/2)">
         <AppLogo class="-enter-x" />
         <LoginRecommend />
       </div>
-      <div class="flex flex-col h-full mx-auto xl:(h-auto w-1/2)">
+      <div class="flex h-full xl:(h-auto w-1/2)">
         <div :class="`${prefixCls}-form`" class="enter-x">
           <PasswordForm />
           <MobileForm />
@@ -64,15 +64,14 @@ $dark-bg: #293146;
   }
 
   .container {
-    @apply h-full mx-auto py-2 sm:px-10;
-
     .#{$logo-prefix-cls}-title {
       font-size: 24px;
       color: #fff;
     }
 
     .#{$prefix-cls}-form {
-      @apply min-w-360px w-full m-auto px-5 py-8 rounded-md shadow-md  xl:(ml-16 w-auto p-4 bg-transparent shadow-none);
+      @apply w-md m-auto px-5 py-8 rounded-md shadow-md
+        xl:(p-4 bg-transparent shadow-none);
     }
   }
 

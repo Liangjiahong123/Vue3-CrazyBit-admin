@@ -20,7 +20,7 @@ const { getFormRules } = useFormRules(formData);
 <template>
   <main class="reset-pwd-form" v-if="showResetPwd">
     <LoginFormTitle class="enter-x" />
-    <el-form :model="formData" :rules="getFormRules" class="enter-x p-4 w-sm">
+    <el-form :model="formData" :rules="getFormRules" class="enter-x p-4">
       <el-form-item prop="account" class="enter-x">
         <el-input size="large" :placeholder="t('accountPlaceholder')" v-model="formData.account" />
       </el-form-item>
