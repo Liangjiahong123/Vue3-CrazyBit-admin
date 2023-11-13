@@ -6,8 +6,8 @@ import { defineStore } from "pinia";
 import { pinia } from "@/stores";
 import { localeSetting } from "@/settings/localeSettings";
 
-const curLocaleInfo = (localStorage.getItem(CacheKeyEnum.LOCALE_KEY) ||
-  localeSetting) as LocaleSetting;
+const lsLocale = JSON.parse(localStorage.getItem(CacheKeyEnum.LOCALE_KEY) as any);
+const curLocaleInfo = (lsLocale || localeSetting) as LocaleSetting;
 
 interface LocaleState {
   localInfo: LocaleSetting;
@@ -22,8 +22,12 @@ export const useLocaleStore = defineStore("locale", {
   },
 
   actions: {
-    setLocaleInfo(payload) {}
+    setLocaleInfo(payload: Partial<LocaleSetting>) {
+      this.localInfo = { ...this.localInfo, ...payload };
+      localStorage.setItem(CacheKeyEnum.LOCALE_KEY, JSON.stringify(this.localInfo));
+    }
   }
 });
 
+// 在组件外部使用
 export const useLocaleStoreWithOut = () => useLocaleStore(pinia);

@@ -4,14 +4,16 @@ import { localeList } from "@/settings/localeSettings";
 import { ArrowDown } from "@element-plus/icons-vue";
 import { useLocale } from "@/locales/useLocale";
 
-const { getLocale } = useLocale();
+const { getLocale, setLocale } = useLocale();
 
 const getLocaleText = computed(() => {
   const pickerText = localeList.find((item) => item.command === unref(getLocale))?.lang;
   return pickerText;
 });
 
-const handleMenuClick = (lang: LocaleType) => {};
+const handleMenuClick = async (locale: LocaleType) => {
+  await setLocale(locale);
+};
 </script>
 
 <template>
