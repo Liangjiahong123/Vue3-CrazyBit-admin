@@ -7,6 +7,7 @@ import { createApp } from "vue";
 
 import { setupStore } from "@/stores";
 import { setupRouter } from "@/router";
+import { setupRouterGuard } from "@/router/guards";
 import { setupI18n } from "@/locales";
 
 import App from "./App.vue";
@@ -16,10 +17,11 @@ async function bootstrap() {
   // 初始化store
   setupStore(app);
   //初始化i18n
-  setupI18n(app);
+  await setupI18n(app);
   // 初始化路由
   setupRouter(app);
-
+  // 初始化路由守卫
+  setupRouterGuard();
   app.mount("#app");
 }
 

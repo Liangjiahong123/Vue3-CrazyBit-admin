@@ -19,4 +19,6 @@ export const router = createRouter({
   scrollBehavior: () => ({ left: 0, top: 0 }) // 路由切换滚动到顶部
 });
 
-export const setupRouter = (app: App<Element>) => app.use(router);
+export function setupRouter(app: App<Element>) {
+  app.use(router);
+}

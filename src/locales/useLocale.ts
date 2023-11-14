@@ -4,19 +4,7 @@ import { storeToRefs } from "pinia";
 import { i18n } from "@/locales";
 import { setHtmlLang } from "./utils";
 
-const setI18nLocale = (locale: LocaleType) => {
-  if (i18n.mode === "legacy") {
-    i18n.global.locale = locale;
-  } else {
-    (i18n.global.locale as Ref).value = locale;
-  }
-  const localeStore = useLocaleStoreWithOut();
-  localeStore.setLocaleInfo({ locale });
-  // 确保浏览器正确解析网页的语言环境
-  setHtmlLang(locale);
-};
-
-export const useLocale = () => {
+export function useLocale() {
   const localeStore = useLocaleStoreWithOut();
   const { getLocale } = storeToRefs(localeStore);
 
@@ -34,4 +22,16 @@ export const useLocale = () => {
   };
 
   return { getLocale, setLocale };
-};
+}
+
+function setI18nLocale(locale: LocaleType) {
+  if (i18n.mode === "legacy") {
+    i18n.global.locale = locale;
+  } else {
+    (i18n.global.locale as Ref).value = locale;
+  }
+  const localeStore = useLocaleStoreWithOut();
+  localeStore.setLocaleInfo({ locale });
+  // 确保浏览器正确解析网页的语言环境
+  setHtmlLang(locale);
+}

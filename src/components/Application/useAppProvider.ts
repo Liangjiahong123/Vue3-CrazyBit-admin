@@ -6,10 +6,10 @@ interface AppProviderProps {
 
 const key: InjectionKey<AppProviderProps> = Symbol();
 
-export const createAppProvider = (props: AppProviderProps) => {
+export function createAppProvider(props: AppProviderProps) {
   return createProvider<AppProviderProps>(key, props);
-};
+}
 
-export const useAppProvider = () => {
+export function useAppProvider() {
   return useProvider<AppProviderProps>(key);
-};
+}

@@ -4,12 +4,6 @@ import type { VueI18nTranslation } from "vue-i18n";
 
 type I18nFnRestArg = [string, any];
 
-const getKey = (namespace: string | undefined, key: string) => {
-  if (!namespace) return key;
-  if (key.startsWith(namespace)) return key;
-
-  return `${namespace}.${key}`;
-};
 /**
  * @param namespace
  * @example
@@ -17,7 +11,7 @@ const getKey = (namespace: string | undefined, key: string) => {
  * ===
  * t('sys.login.logoTitle')
  */
-export const useI18n = (namespace?: string) => {
+export function useI18n(namespace?: string) {
   const defaultFn = {
     t: (key: string) => getKey(namespace, key)
   };
@@ -32,4 +26,11 @@ export const useI18n = (namespace?: string) => {
     return (t as VueI18nTranslation)(getKey(namespace, key), ...(arg as I18nFnRestArg));
   };
   return { t: $t };
-};
+}
+
+function getKey(namespace: string | undefined, key: string) {
+  if (!namespace) return key;
+  if (key.startsWith(namespace)) return key;
+
+  return `${namespace}.${key}`;
+}

@@ -1,9 +1,9 @@
 import { set } from "lodash-es";
-export const setHtmlLang = (lang: string) => {
+export function setHtmlLang(lang: string) {
   document.querySelector("html")?.setAttribute("lang", lang);
-};
+}
 
-export const createMsgConfig = (modules: Recordable<Recordable>, prefix: string) => {
+export function createMsgConfig(modules: Recordable<Recordable>, prefix: string) {
   const msgConfig: Recordable = {};
   Object.keys(modules).forEach((key) => {
     // 获取文件内容
@@ -32,4 +32,4 @@ export const createMsgConfig = (modules: Recordable<Recordable>, prefix: string)
   });
 
   return msgConfig;
-};
+}

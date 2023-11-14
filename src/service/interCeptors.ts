@@ -2,7 +2,6 @@ import type { InternalAxiosRequestConfig, AxiosRequestConfig, AxiosResponse } fr
 import { RequestOptions } from "#/http";
 import { ResultCodeEnum } from "@/enums/httpEnum";
 import { useMessage } from "@/hooks/web/useMessage";
-import { isEmpty, isNull, isUndefined } from "@/utils/vaildate";
 
 const { createMessage } = useMessage();
 
@@ -36,7 +35,7 @@ export interface InterCeptors {
 
 export const interceptors: InterCeptors = {
   // 请求拦截处理
-  requestInterceptor: (config) => {
+  requestInterceptor(config) {
     const token = window.localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = token;
@@ -44,16 +43,22 @@ export const interceptors: InterCeptors = {
     return config;
   },
   // 响应拦截处理
-  responseInterceptor: (res) => res,
+  responseInterceptor(res) {
+    return res;
+  },
 
   // 请求错误的处理
-  handleReqInterceptorErrHook: (error) => Promise.reject(error),
+  handleReqInterceptorErrHook(error) {
+    Promise.reject(error);
+  },
 
   // 响应错误的处理
-  handleResInterceptorErrHook: (error) => Promise.reject(error),
+  handleResInterceptorErrHook(error) {
+    Promise.reject(error);
+  },
 
   // 响应数据的处理
-  handleResponseHook: (res, options) => {
+  handleResponseHook(res, options) {
     const { getResponseCode, getNativeRes, showMessage } = options;
     // 如果需要响应头，则不作处理
     if (getNativeRes) return res;
