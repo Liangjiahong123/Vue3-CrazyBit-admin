@@ -1,14 +1,14 @@
+import type { LoginParams } from "@/api/sys/types/userType";
+import type { UserInfo } from "#/store";
+
 import { defineStore } from "pinia";
 import { router } from "@/router";
-
+import { pinia } from "@/stores";
 import { loginApi, getUserInfoApi } from "@/api/sys/user";
 import { LoginResponse } from "@/api/sys/types/userType";
 import { isArray } from "@/utils/vaildate";
 import { RoleEnum } from "@/enums/roleEnum";
 import { PageEnum } from "@/enums/pageEnum";
-
-import type { LoginParams } from "@/api/sys/types/userType";
-import type { UserInfo } from "#/store";
 
 interface UserState {
   token?: string;
@@ -48,8 +48,8 @@ export const useUserStore = defineStore("user", {
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null;
       const userInfo = await getUserInfoApi();
-      if (isArray(userInfo?.roles)) {
-        const roleList = userInfo?.roles.map((item) => item.value) as RoleEnum[];
+      if (isArray(userInfo.roles)) {
+        const roleList = userInfo.roles.map((item) => item.value) as RoleEnum[];
         this.setRoleList(roleList);
       } else {
         userInfo.roles = [];
@@ -75,3 +75,7 @@ export const useUserStore = defineStore("user", {
     }
   }
 });
+
+export const useUserStoreWithOut = () => {
+  return useUserStore(pinia);
+};

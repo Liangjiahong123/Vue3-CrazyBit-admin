@@ -8,7 +8,7 @@ import { setHtmlLang } from "./utils";
 
 export let i18n: ReturnType<typeof createI18n>;
 
-export const createI18nConfig = async (): Promise<I18nOptions> => {
+async function createI18nConfig(): Promise<I18nOptions> {
   const { fallback, useableLocales } = localeSetting;
   const localeStore = useLocaleStoreWithOut();
   const lang = localeStore.getLocale;
@@ -26,10 +26,10 @@ export const createI18nConfig = async (): Promise<I18nOptions> => {
     availableLocales: useableLocales,
     sync: true
   };
-};
+}
 
-export const setupI18n = async (app: App) => {
+export async function setupI18n(app: App) {
   const config = await createI18nConfig();
   i18n = createI18n(config);
   app.use(i18n);
-};
+}

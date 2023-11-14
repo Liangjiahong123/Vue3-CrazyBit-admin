@@ -8,19 +8,19 @@ type ShallowUnwrap<T> = {
   [P in keyof T]: UnwrapRef<T[P]>;
 };
 
-export const createProvider = <T>(
+export function createProvider<T>(
   key: InjectionKey<T> = Symbol(),
   value: any,
   options: ProviderOptions = {}
-) => {
+) {
   const { isReadonly = true } = options;
   const state = reactive(value);
   const provideValue = isReadonly ? readonly(state) : state;
   provide(key, provideValue);
-};
-export const useProvider = <T>(
+}
+export function useProvider<T>(
   key: InjectionKey<T> = Symbol(),
   defaultValue?: any
-): ShallowUnwrap<T> => {
+): ShallowUnwrap<T> {
   return inject(key, defaultValue || {});
-};
+}

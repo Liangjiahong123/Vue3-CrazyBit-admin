@@ -2,7 +2,7 @@ import { useAppStore } from "@/stores/modules/app";
 import { ThemeEnum } from "@/enums/appEnum";
 import { storeToRefs } from "pinia";
 
-export const useAppSetting = () => {
+export function useAppSetting() {
   const appStore = useAppStore();
 
   const { getDarkMode } = storeToRefs(appStore);
@@ -13,4 +13,4 @@ export const useAppSetting = () => {
     getDarkMode,
     setDarkMode
   };
-};
+}
