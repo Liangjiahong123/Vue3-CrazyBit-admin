@@ -2,7 +2,7 @@ import type { LocaleSetting } from "#/config";
 import { LocaleEnum } from "@/enums/appEnum";
 
 interface LocaleConfig {
-  lang: string;
+  text: string;
   command: string;
 }
 
@@ -13,6 +13,6 @@ export const localeSetting: LocaleSetting = {
 };
 
 export const localeList: LocaleConfig[] = [
-  { lang: "简体中文", command: LocaleEnum.ZH_CN },
-  { lang: "English", command: LocaleEnum.EN }
+  { text: "简体中文", command: LocaleEnum.ZH_CN },
+  { text: "English", command: LocaleEnum.EN }
 ];
