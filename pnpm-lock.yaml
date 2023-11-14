@@ -17,6 +17,9 @@ dependencies:
   axios:
     specifier: ^1.5.1
     version: registry.npmmirror.com/axios@1.5.1
+  dayjs:
+    specifier: ^1.11.10
+    version: registry.npmmirror.com/dayjs@1.11.10
   element-plus:
     specifier: ^2.3.14
     version: registry.npmmirror.com/element-plus@2.3.14(vue@3.3.4)
