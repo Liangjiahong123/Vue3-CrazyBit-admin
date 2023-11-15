@@ -5,7 +5,7 @@ import { useI18n } from "@/hooks/web/useI18n";
 
 const { getLoginState, setLoginState } = useLoginState();
 const { getFormRules } = useFormRules();
-const { t } = useI18n("sys.login");
+const { t } = useI18n();
 
 const showMobileLogin = computed(() => unref(getLoginState) === LoginStateEnum.MOBILE);
 
@@ -24,23 +24,23 @@ const formData = reactive({
           v-model="formData.mobile"
           maxlength="11"
           size="large"
-          :placeholder="t('mobilePlaceholder')"
+          :placeholder="t('sys.login.mobilePlaceholder')"
         />
       </el-form-item>
       <el-form-item prop="authCode" class="enter-x">
         <el-input
           v-model="formData.authCode"
           size="large"
-          :placeholder="t('authCodePlaceholder')"
+          :placeholder="t('sys.login.authCodePlaceholder')"
         />
 
         <el-button size="large" class="ml-4">
-          {{ t("authCodeButton") }}
+          {{ t("sys.login.authCodeButton") }}
         </el-button>
       </el-form-item>
 
       <el-button type="primary" size="large" class="enter-x w-full !rounded-lg mt-6">
-        <span class="!text-16px !tracking-4px">{{ t("loginButton") }}</span>
+        <span class="!text-16px !tracking-4px">{{ t("sys.login.loginButton") }}</span>
       </el-button>
       <el-button
         size="large"
@@ -48,7 +48,7 @@ const formData = reactive({
         plain
         @click="setLoginState(LoginStateEnum.LOGIN)"
       >
-        <span class="!text-16px !tracking-4px">{{ t("backButton") }}</span>
+        <span class="!text-16px !tracking-4px">{{ t("sys.login.backButton") }}</span>
       </el-button>
     </el-form>
   </main>

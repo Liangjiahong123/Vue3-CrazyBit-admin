@@ -5,6 +5,6 @@ import "dayjs/locale/zh-cn";
 
 <template>
   <AppProvider>
-    <RouterView />
+    <router-view />
   </AppProvider>
 </template>
