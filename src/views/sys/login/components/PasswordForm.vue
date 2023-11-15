@@ -5,7 +5,7 @@ import { useUserStore } from "@/stores/modules/user";
 import { useMessage } from "@/hooks/web/useMessage";
 import { useI18n } from "@/hooks/web/useI18n";
 
-const { t } = useI18n("sys.login");
+const { t } = useI18n();
 const { createNotify, createMessage } = useMessage();
 const userStore = useUserStore();
 const { getLoginState, setLoginState } = useLoginState();
@@ -36,8 +36,8 @@ const handleLogin = async () => {
     });
     if (userInfo) {
       createNotify({
-        message: `${t("loginSuccessDesc")}: ${userInfo.realName}`,
-        title: t("loginSuccessTitle")
+        message: `${t("sys.login.loginSuccessDesc")}: ${userInfo.realName}`,
+        title: t("sys.login.loginSuccessTitle")
       });
     }
   } catch (e: any) {
@@ -65,7 +65,7 @@ const handleLogin = async () => {
         <el-input
           size="large"
           type="password"
-          :placeholder="t('passwordPlaceholder')"
+          :placeholder="t('sys.login.passwordPlaceholder')"
           show-password
           v-model="formData.password"
         />
@@ -73,7 +73,7 @@ const handleLogin = async () => {
 
       <el-row class="enter-x">
         <el-col :span="12">
-          <el-checkbox v-model="formData.rememberMe" :label="t('remeberChecked')" />
+          <el-checkbox v-model="formData.rememberMe" :label="t('sys.login.remeberChecked')" />
         </el-col>
         <el-col :span="12" class="text-right">
           <el-button
@@ -82,7 +82,7 @@ const handleLogin = async () => {
             link
             @click="setLoginState(LoginStateEnum.RESET_PASSWORD)"
           >
-            {{ t("forgetPswdButton") }}
+            {{ t("sys.login.forgetPswdButton") }}
           </el-button>
         </el-col>
       </el-row>
@@ -94,23 +94,23 @@ const handleLogin = async () => {
         :loading="loading"
         @click="handleLogin"
       >
-        <span class="!text-16px !tracking-4px">{{ t("loginButton") }}</span>
+        <span class="!text-16px !tracking-4px">{{ t("sys.login.loginButton") }}</span>
       </el-button>
 
       <el-row :gutter="20" class="mt-6 enter-x <sm:(flex flex-col)">
         <el-col :span="8" class="<sm:(!max-w-full)">
           <el-button plain class="w-full" @click="setLoginState(LoginStateEnum.MOBILE)">
-            {{ t("mobileFormTitle") }}
+            {{ t("sys.login.mobileFormTitle") }}
           </el-button>
         </el-col>
         <el-col :span="8" class="<sm:(mt-7px !max-w-full)">
           <el-button plain class="w-full" @click="setLoginState(LoginStateEnum.QR_CODE)">
-            {{ t("qrCodeFormTitle") }}
+            {{ t("sys.login.qrCodeFormTitle") }}
           </el-button>
         </el-col>
         <el-col :span="8" class="<sm:(mt-7px !max-w-full)">
           <el-button plain class="w-full" @click="setLoginState(LoginStateEnum.REGISTER)">
-            {{ t("registerFormTitle") }}
+            {{ t("sys.login.registerFormTitle") }}
           </el-button>
         </el-col>
       </el-row>

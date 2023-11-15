@@ -3,15 +3,15 @@ import { useLoginState, LoginStateEnum } from "../useLogin";
 import { useI18n } from "@/hooks/web/useI18n";
 
 const { getLoginState } = useLoginState();
-const { t } = useI18n("sys.login");
+const { t } = useI18n();
 
 const loginTitle = computed(() => {
   const titleMap = {
-    [LoginStateEnum.LOGIN]: t("passwordFormTitle"),
-    [LoginStateEnum.REGISTER]: t("registerFormTitle"),
-    [LoginStateEnum.RESET_PASSWORD]: t("resetFormTitle"),
-    [LoginStateEnum.MOBILE]: t("mobileFormTitle"),
-    [LoginStateEnum.QR_CODE]: t("qrCodeFormTitle")
+    [LoginStateEnum.LOGIN]: t("sys.login.passwordFormTitle"),
+    [LoginStateEnum.REGISTER]: t("sys.login.registerFormTitle"),
+    [LoginStateEnum.RESET_PASSWORD]: t("sys.login.resetFormTitle"),
+    [LoginStateEnum.MOBILE]: t("sys.login.mobileFormTitle"),
+    [LoginStateEnum.QR_CODE]: t("sys.login.qrCodeFormTitle")
   };
 
   return titleMap[unref(getLoginState)];

@@ -6,7 +6,7 @@ import "./styles/index.scss";
 import { createApp } from "vue";
 
 import { setupStore } from "@/stores";
-import { setupRouter } from "@/router";
+import { setupRouter, router } from "@/router";
 import { setupRouterGuard } from "@/router/guards";
 import { setupI18n } from "@/locales";
 
@@ -21,7 +21,7 @@ async function bootstrap() {
   // 初始化路由
   setupRouter(app);
   // 初始化路由守卫
-  setupRouterGuard();
+  setupRouterGuard(router);
   app.mount("#app");
 }
 
