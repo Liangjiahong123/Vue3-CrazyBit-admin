@@ -1,6 +1,5 @@
-import { i18n } from "@/locales";
-
 import type { VueI18nTranslation } from "vue-i18n";
+import { i18n } from "@/locales";
 
 type I18nFnRestArg = [string, any];
 
@@ -20,12 +19,16 @@ export function useI18n(namespace?: string) {
   const { t } = i18n.global;
 
   const $t = (key: string, ...arg: any[]) => {
-    if (!key) return;
+    if (!key) return "";
     if (!key.includes(".") && !namespace) return key;
-
     return (t as VueI18nTranslation)(getKey(namespace, key), ...(arg as I18nFnRestArg));
   };
   return { t: $t };
+}
+
+// 提供到路由中配合i18n ally插件使用，与vue-i18n插件解耦
+export function t(key: string) {
+  return key;
 }
 
 function getKey(namespace: string | undefined, key: string) {
