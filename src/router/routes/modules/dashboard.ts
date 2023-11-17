@@ -1,9 +1,11 @@
 import type { AppRouteRecordRaw } from "@/router/types";
+import { LAYOUT } from "@/router/constants";
 import { t } from "@/hooks/web/useI18n";
 
 const dashboard: AppRouteRecordRaw = {
   path: "/dashboard",
   name: "Dashboard",
+  component: LAYOUT,
   redirect: "/dashboard/analysis",
   meta: {
     title: t("routes.dashboard.dashboard")
