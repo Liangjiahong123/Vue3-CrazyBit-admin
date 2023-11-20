@@ -15,7 +15,7 @@ $prefix-cls: "#{$namespace}-layout-content";
 
 .#{$prefix-cls} {
   background-color: $layout-content-bg-color;
-  box-shadow: 0 2px 4px rgb(0 0 0 / 0.25);
+  box-shadow: $layout-box-shadow;
   @apply p-4 m-4 ml-0 rounded-lg;
 }
 </style>
