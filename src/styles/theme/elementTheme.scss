@@ -1,22 +1,24 @@
 html.dark {
   --el-color-primary: #4509fa;
-  --cb-color-dark-1: #4006edd6;
+
+  $primary-color: var(--el-color-primary);
+  $cb-color-dark-1: #4006edd6;
 
   .el-button {
     &--primary {
-      --el-button-hover-border-color: var(--cb-color-dark-1);
-      --el-button-active-border-color: var(--cb-color-dark-1);
-      --el-button-hover-bg-color: var(--cb-color-dark-1);
+      --el-button-hover-border-color: $cb-color-dark-1;
+      --el-button-active-border-color: $cb-color-dark-1;
+      --el-button-hover-bg-color: $cb-color-dark-1;
       --el-button-active-bg-color: #2d00b3;
       --el-button-disabled-bg-color: #230288;
 
       &.is-link:is(:hover, :active) {
-        color: var(--cb-color-dark-1);
+        color: $cb-color-dark-1;
       }
     }
   }
 
   .el-switch__core .el-switch__action {
-    background-color: var(--el-color-primary);
+    background-color: $primary-color;
   }
 }

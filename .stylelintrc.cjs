@@ -44,6 +44,7 @@ module.exports = {
           "else if",
           "each",
           "include",
+          "use",
           "mixin",
           "apply",
           "forward"
