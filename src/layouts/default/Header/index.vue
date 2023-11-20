@@ -12,6 +12,7 @@ const { prefixCls } = useClassName("layout-header");
 $prefix-cls: "#{$namespace}-layout-header";
 .#{$prefix-cls} {
   background-color: $layout-header-bg-color;
-  @apply w-full rounded-lg shadow-md;
+  box-shadow: $layout-box-shadow;
+  @apply w-full rounded-lg;
 }
 </style>
