@@ -18,7 +18,7 @@ const { prefixCls } = useClassName("login");
     </div>
 
     <div class="-enter-x xl:hidden">
-      <AppLogo alwaysShowTitle />
+      <AppLogo />
     </div>
 
     <div class="container flex h-full justify-center mx-auto">
@@ -57,16 +57,20 @@ $dark-bg: #293146;
   }
 
   .#{$logo-prefix-cls} {
+    @apply absolute top-4 h-30px xl:(w-3/5 h-80px relative top-0);
+
     &-title {
-      font-size: 16px;
-      color: #fff;
+      @apply text-16px text-white;
+    }
+
+    img {
+      @apply w-40px xl:w-60px;
     }
   }
 
   .container {
     .#{$logo-prefix-cls}-title {
-      font-size: 24px;
-      color: #fff;
+      @apply text-24px text-white;
     }
 
     .#{$prefix-cls}-form {
