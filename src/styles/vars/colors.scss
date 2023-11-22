@@ -1,9 +1,16 @@
+html {
+  --layout-bg-color-1: #f2f6fb;
+  --layout-bg-color-2: #fcfdfe;
+}
+
 $error-color: #f56c6c;
 $success-color: #67c23a;
 $warning-color: #e6a23c;
 $info-color: #909399;
 
-$layout-bg-color: #f2f6fb;
-$layout-header-bg-color: #fcfdfe;
-$layout-content-bg-color: #fcfdfe;
-$layout-box-shadow: 0 2px 4px rgb(0 140 255 / 0.1);
+$layout-bg-color: var(--layout-bg-color-1);
+$layout-sider-bg-color: var(--layout-bg-color-1);
+$layout-menu-hover-color: #4099ff;
+$layout-header-bg-color: var(--layout-bg-color-2);
+$layout-content-bg-color: var(--layout-bg-color-2);
+$layout-box-shadow: 0 0 12px rgb(0 140 255 / 0.1);

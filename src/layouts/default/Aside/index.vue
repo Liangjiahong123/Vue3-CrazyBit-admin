@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import LayoutMenu from "../Menu/index.vue";
 import { useClassName } from "@/hooks/web/useClassName";
 
 const { prefixCls } = useClassName("layout-aside");
@@ -6,9 +7,10 @@ const { prefixCls } = useClassName("layout-aside");
 
 <template>
   <el-aside width="210px" :class="prefixCls">
-    <div class="py-10px pl-10px">
+    <div class="py-10px pl-10px h-80px">
       <AppLogo />
     </div>
+    <LayoutMenu />
   </el-aside>
 </template>
 
@@ -17,10 +19,7 @@ $prefix-cls: "#{$namespace}-layout-aside";
 $logo-prefix-cls: "#{$namespace}-app-logo";
 
 .#{$prefix-cls} {
+  background-color: #02093a;
   @apply fixed top-0 left-0 h-full;
-
-  .#{$logo-prefix-cls}-title {
-    @apply text-black;
-  }
 }
 </style>
