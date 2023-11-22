@@ -13,6 +13,6 @@ $prefix-cls: "#{$namespace}-layout-header";
 .#{$prefix-cls} {
   background-color: $layout-header-bg-color;
   box-shadow: $layout-box-shadow;
-  @apply w-full rounded-lg;
+  @apply w-full;
 }
 </style>

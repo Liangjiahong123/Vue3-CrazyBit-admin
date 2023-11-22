@@ -13,6 +13,7 @@ const WHITE_LIST: string[] = [];
   });
 })(basicRoutes);
 
+// 创建路由
 export const router = createRouter({
   history: createWebHashHistory(), // hash模式
   routes: [...basicRoutes, ...asyncRoutes] as RouteRecordRaw[], // 初始路由列表

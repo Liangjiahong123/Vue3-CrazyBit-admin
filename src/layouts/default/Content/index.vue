@@ -14,8 +14,6 @@ const { prefixCls } = useClassName("layout-content");
 $prefix-cls: "#{$namespace}-layout-content";
 
 .#{$prefix-cls} {
-  background-color: $layout-content-bg-color;
-  box-shadow: $layout-box-shadow;
-  @apply p-4 m-4 ml-0 rounded-lg;
+  @apply p-4 rounded-lg;
 }
 </style>
