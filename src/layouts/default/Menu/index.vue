@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { Location } from "@element-plus/icons-vue";
 import { useClassName } from "@/hooks/web/useClassName";
+import "@/router/menu";
 
 defineOptions({ name: "LayoutMenu" });
 
 const { prefixCls } = useClassName("layout-menu");
 const { getRoutes } = useRouter();
 const menuList = [getRoutes()[2]];
-console.log(menuList);
 </script>
 
 <template>

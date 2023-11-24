@@ -19,7 +19,7 @@ $prefix-cls: "#{$namespace}-layout-aside";
 $logo-prefix-cls: "#{$namespace}-app-logo";
 
 .#{$prefix-cls} {
-  background-color: #02093a;
+  background-color: $layout-menu-hover-color;
   @apply fixed top-0 left-0 h-full;
 }
 </style>

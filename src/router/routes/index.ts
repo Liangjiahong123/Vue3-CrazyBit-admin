@@ -2,10 +2,9 @@ import type { AppRouteRecordRaw } from "@/router/types";
 import { getRouteModule } from "../helper/route";
 import { PageEnum } from "@/enums/pageEnum";
 import { t } from "@/hooks/web/useI18n";
-
 // 获取所有路由模块
-const routeModules: Recordable = import.meta.glob("./modules/**/*.ts", { eager: true });
-const routesList = getRouteModule(routeModules);
+const modules: Recordable = import.meta.glob("./modules/**/*.ts", { eager: true });
+const routeList = getRouteModule<AppRouteRecordRaw>(modules);
 
 // 根路由
 const RootRoute: AppRouteRecordRaw = {
@@ -24,7 +23,7 @@ const LoginRoute: AppRouteRecordRaw = {
 };
 
 // 异步路由
-export const asyncRoutes = [...routesList];
+export const asyncRoutes = [...routeList];
 
 // 基础路由
 export const basicRoutes = [LoginRoute, RootRoute];

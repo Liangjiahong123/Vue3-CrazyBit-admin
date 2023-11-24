@@ -8,6 +8,7 @@ const dashboard: AppRouteRecordRaw = {
   component: LAYOUT,
   redirect: "/dashboard/analysis",
   meta: {
+    orderId: 10,
     title: t("routes.dashboard.dashboard")
   },
   children: [
