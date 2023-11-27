@@ -2,6 +2,7 @@ import type { MenuModule, Menu } from "@/router/types";
 
 // 菜单路径处理
 function concatMenyPath() {}
+
 // 菜单模块解析
 function parseMenuModule(menuModule: MenuModule): Menu {
   const { menu } = menuModule;
