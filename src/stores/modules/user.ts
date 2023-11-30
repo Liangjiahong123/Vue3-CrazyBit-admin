@@ -18,13 +18,14 @@ interface UserState {
 
 export const useUserStore = defineStore("user", {
   state: (): UserState => ({
-    token: undefined,
-    userInfo: null,
-    roleList: []
+    token: undefined, // token
+    userInfo: null, // 用户信息
+    roleList: [] // 用户角色列表
   }),
   getters: {
     getToken: ({ token }) => token,
-    getUserInfo: ({ userInfo }) => userInfo
+    getUserInfo: ({ userInfo }) => userInfo,
+    getRoleList: ({ roleList }) => roleList
   },
   actions: {
     async loginAction(payload: LoginParams): Promise<LoginResponse | null> {
