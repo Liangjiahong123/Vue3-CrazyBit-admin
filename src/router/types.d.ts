@@ -6,16 +6,9 @@ export type Component<T = any> =
   | ReturnType<typeof defineComponent>
   | (() => Promise<T>);
 
-interface AppRouteMeta extends RouteMeta {
-  title: string; // 路由标题
-  orderId?: number; // 路由排序
-  icon?: string; // 路由图标
-  ignoreKeepAlive?: boolean; // 是否忽略缓存
-}
-
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, "meta" | "children"> {
   name: string;
-  meta: AppRouteMeta;
+  meta: RouteMeta;
   component?: Component | string;
   children?: AppRouteRecordRaw[];
 }
@@ -28,7 +21,7 @@ export interface Menu {
   children?: Menu[]; // 子菜单
   orderId?: number; // 菜单排序
   hidden?: boolean; // 是否隐藏
-  meta: Partial<AppRouteMeta>; // 菜单额外信息
+  meta: Partial<RouteMeta>; // 菜单额外信息
 }
 
 export interface MenuModule {

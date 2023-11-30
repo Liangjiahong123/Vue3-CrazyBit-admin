@@ -3,11 +3,13 @@ import { ThemeEnum } from "@/enums/appEnum";
 
 interface AppState {
   darkMode?: ThemeEnum;
+  projectConfig: any;
 }
 
 export const useAppStore = defineStore("app", {
   state: (): AppState => ({
-    darkMode: undefined
+    darkMode: undefined,
+    projectConfig: {}
   }),
   getters: {
     getDarkMode: (state): ThemeEnum | string => state.darkMode || ThemeEnum.LIGHT
