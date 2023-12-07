@@ -40,6 +40,12 @@ export function isEmpty<T = unknown>(value: T): value is T {
   return false;
 }
 
+// 判断是否为链接
+export function isUrl(path: string): boolean {
+  const reg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?/;
+  return reg.test(path);
+}
+
 function validHelper(val: unknown, type: string) {
   return Object.prototype.toString.call(val) === `[object ${type}]`;
 }
