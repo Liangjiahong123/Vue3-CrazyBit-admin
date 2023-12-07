@@ -1,12 +1,18 @@
 import type { LoginParams } from "@/api/sys/types/userType";
 import type { UserInfo } from "#/store";
+import type { RouteRecordRaw } from "vue-router";
 
 import { defineStore } from "pinia";
 import { router } from "@/router";
+
 import { pinia } from "@/stores";
+import { usePermissionStore } from "./permission";
+
 import { loginApi, getUserInfoApi } from "@/api/sys/user";
 import { LoginResponse } from "@/api/sys/types/userType";
+
 import { isArray } from "@/utils/vaildate";
+
 import { RoleEnum } from "@/enums/roleEnum";
 import { PageEnum } from "@/enums/pageEnum";
 
@@ -41,11 +47,14 @@ export const useUserStore = defineStore("user", {
     async loginNextAction(): Promise<LoginResponse | null> {
       if (!this.getToken) return null;
       const userInfo = await this.getUserInfoAction();
-
+      const permissionStore = usePermissionStore();
+      const routes = await permissionStore.createRoutesAction();
+      routes.forEach((route) => {
+        router.addRoute(route as unknown as RouteRecordRaw);
+      });
       await router.replace(PageEnum.BASE_HOME);
       return userInfo;
     },
-
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null;
       const userInfo = await getUserInfoApi();
