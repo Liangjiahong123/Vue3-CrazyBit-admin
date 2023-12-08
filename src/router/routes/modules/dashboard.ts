@@ -25,7 +25,7 @@ const dashboard: AppRouteRecordRaw = {
       name: "Workbench",
       component: () => import("@/views/dashboard/workbench/index.vue"),
       meta: {
-        title: t("routes.dashboard.analysis")
+        title: t("routes.dashboard.workbench")
       }
     }
   ]
