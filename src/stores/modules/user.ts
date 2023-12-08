@@ -43,7 +43,6 @@ export const useUserStore = defineStore("user", {
         return Promise.reject(error);
       }
     },
-
     async loginNextAction(): Promise<LoginResponse | null> {
       if (!this.getToken) return null;
       const userInfo = await this.getUserInfoAction();

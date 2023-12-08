@@ -27,7 +27,7 @@ export function filter<T = any>(
     return list.filter((item: T) => {
       // 若该项有children，继续递归
       item[childrenKey] = item[childrenKey] && listFilter(item[childrenKey]);
-      // 使用传入的回调进行过滤,返回false则过滤，否则有children则保留
+      // 执行传入的函数进行过滤
       return func(item) || item[childrenKey]?.length;
     });
   }
