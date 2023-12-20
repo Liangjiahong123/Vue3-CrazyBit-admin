@@ -2,7 +2,7 @@ import { ResultCodeEnum } from "@/enums/httpEnum";
 
 export const resultSuccess = <T = Recordable>(result: T, { message = "ok" } = {}) => ({
   code: ResultCodeEnum.SUCCESS,
-  result,
+  data: result,
   message,
   type: "success"
 });
@@ -12,7 +12,7 @@ export const resultError = (
   { result = null, code = ResultCodeEnum.ERROR } = {}
 ) => ({
   code,
-  result,
+  data: result,
   message,
   type: "error"
 });

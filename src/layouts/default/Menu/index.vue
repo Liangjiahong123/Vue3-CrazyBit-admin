@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 import { Location } from "@element-plus/icons-vue";
 import { useClassName } from "@/hooks/web/useClassName";
-// import "@/router/menu";
+import { useI18n } from "@/hooks/web/useI18n";
 import { createMenus } from "@/router/menu";
 
 defineOptions({ name: "LayoutMenu" });
 
-watchEffect(async () => {
-  const menus = await createMenus();
-  console.log("menus-->", menus);
-});
+const { t } = useI18n();
+
+const menus = createMenus();
 
 const { prefixCls } = useClassName("layout-menu");
 </script>
@@ -19,10 +18,10 @@ const { prefixCls } = useClassName("layout-menu");
     <el-sub-menu index="1" v-for="item in menus" :key="item.path">
       <template #title>
         <el-icon><location /></el-icon>
-        <span>{{ item.name }}</span>
+        <span>{{ t(item.name) }}</span>
       </template>
       <el-menu-item v-for="subItem in item.children" :key="subItem.path" index="1-1">
-        {{ subItem.name }}
+        {{ t(subItem.name) }}
       </el-menu-item>
     </el-sub-menu>
   </el-menu>

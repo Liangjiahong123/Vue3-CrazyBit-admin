@@ -9,7 +9,7 @@ const menuList = getRouteModule<MenuModule>(modules);
 const staticMenus: Menu[] = createStaticMenus(menuList);
 console.log("staticMenus->", staticMenus);
 
-async function createAsyncMenus() {
+function createAsyncMenus() {
   const permissionStore = usePermissionStore();
   // 过滤隐藏菜单
   const menuFilter = (menus: Menu[]) => {
@@ -24,7 +24,7 @@ async function createAsyncMenus() {
   return menuFilter(permissionStore.getFrontMenuList);
 }
 
-export async function createMenus(): Promise<Menu[]> {
-  const menus = await createAsyncMenus();
+export function createMenus(): Menu[] {
+  const menus = createAsyncMenus();
   return menus;
 }

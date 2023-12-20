@@ -1,12 +1,12 @@
 import type { LocaleSetting } from "#/config";
 
-import { CacheKeyEnum } from "@/enums/cacheEnum";
+import { KeyEnum } from "@/enums/cacheEnum";
 import { LocaleEnum } from "@/enums/appEnum";
 import { defineStore } from "pinia";
 import { pinia } from "@/stores";
 import { localeSetting } from "@/settings/localeSettings";
 
-const lsLocale = JSON.parse(localStorage.getItem(CacheKeyEnum.LOCALE_KEY) as any);
+const lsLocale = JSON.parse(localStorage.getItem(KeyEnum.LOCALE_KEY) as any);
 const curLocaleInfo = (lsLocale || localeSetting) as LocaleSetting;
 
 interface LocaleState {
@@ -24,7 +24,7 @@ export const useLocaleStore = defineStore("locale", {
   actions: {
     setLocaleInfo(payload: Partial<LocaleSetting>) {
       this.localInfo = { ...this.localInfo, ...payload };
-      localStorage.setItem(CacheKeyEnum.LOCALE_KEY, JSON.stringify(this.localInfo));
+      localStorage.setItem(KeyEnum.LOCALE_KEY, JSON.stringify(this.localInfo));
     }
   }
 });
