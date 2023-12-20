@@ -1,30 +1,36 @@
+import type { RouteRecordRaw } from "vue-router";
 import type { Menu, AppRouteRecordRaw } from "@/router/types";
 
 import { defineStore } from "pinia";
 import { pinia } from "@/stores";
-
-import { filter } from "@/utils/helper/treeHelper";
-
+import { useUserStore } from "./user";
+import { router } from "@/router";
 import { asyncRoutes } from "@/router/routes";
 import { transformRouteToMenu } from "@/router/helper/menu";
-import { useUserStore } from "./user";
+import { filter } from "@/utils/helper/treeHelper";
 
 interface PermissionState {
-  frontMenuList: Menu[];
+  hadDynamicAddedRoutes: boolean; // 路由是否已动态添加
+  frontMenuList: Menu[]; // 菜单列表
 }
 
 export const usePermissionStore = defineStore("permission", {
   state: (): PermissionState => ({
+    hadDynamicAddedRoutes: false,
     frontMenuList: []
   }),
 
   getters: {
-    getFrontMenuList: ({ frontMenuList }): Menu[] => frontMenuList
+    getFrontMenuList: (state): Menu[] => state.frontMenuList,
+    getHadDynamicAddedRoutes: (state): boolean => state.hadDynamicAddedRoutes
   },
 
   actions: {
-    setFrontMenuListAction(payload: Menu[]) {
-      this.frontMenuList = payload;
+    setDynamicAddedRoute(added: boolean) {
+      this.hadDynamicAddedRoutes = added;
+    },
+    setFrontMenuListAction(menus: Menu[]) {
+      this.frontMenuList = menus;
     },
 
     // 创建路由
@@ -57,6 +63,14 @@ export const usePermissionStore = defineStore("permission", {
       this.setFrontMenuListAction(menuList);
 
       return routes;
+    },
+
+    async buildRoutesAction() {
+      const routes = await this.createRoutesAction();
+      routes.forEach((route) => {
+        router.addRoute(route as unknown as RouteRecordRaw);
+      });
+      this.setDynamicAddedRoute(true);
     }
   }
 });

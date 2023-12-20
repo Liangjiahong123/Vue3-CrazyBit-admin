@@ -67,13 +67,13 @@ export const interceptors: InterCeptors = {
     // 否则根据数据和状态码进行处理
     if (!res.data) throw new Error("请求失败");
     // 请求成功并返回数据
-    const { code, result, message } = res.data;
+    const { code, data, message } = res.data;
 
     if (code === ResultCodeEnum.SUCCESS) {
       let successMsg = message;
       if (!message) successMsg = "操作成功";
       if (showMessage) createMessage({ message: successMsg });
-      return result;
+      return data;
     }
 
     let errMsg = message;
