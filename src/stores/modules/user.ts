@@ -53,8 +53,8 @@ export const useUserStore = defineStore("user", {
       if (!this.getToken) return null;
       const userInfo = await this.getUserInfoAction();
       const permissionStore = usePermissionStore();
-      await permissionStore.buildRoutesAction();
-      await router.replace(PageEnum.BASE_HOME);
+      permissionStore.buildRoutesAction();
+      router.replace(PageEnum.BASE_HOME);
       return userInfo;
     },
 

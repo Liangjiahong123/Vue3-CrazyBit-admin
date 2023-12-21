@@ -11,30 +11,36 @@ import { filter } from "@/utils/helper/treeHelper";
 
 interface PermissionState {
   hadDynamicAddedRoutes: boolean; // 路由是否已动态添加
+  lastBuildMenuTime: number; // 菜单上次生成时间
   frontMenuList: Menu[]; // 菜单列表
 }
 
 export const usePermissionStore = defineStore("permission", {
   state: (): PermissionState => ({
     hadDynamicAddedRoutes: false,
+    lastBuildMenuTime: 0,
     frontMenuList: []
   }),
 
   getters: {
-    getFrontMenuList: (state): Menu[] => state.frontMenuList,
-    getHadDynamicAddedRoutes: (state): boolean => state.hadDynamicAddedRoutes
+    getHadDynamicAddedRoutes: (state): boolean => state.hadDynamicAddedRoutes,
+    getLastBuildMenuTime: (state): number => state.lastBuildMenuTime,
+    getFrontMenuList: (state): Menu[] => state.frontMenuList
   },
 
   actions: {
     setDynamicAddedRoute(added: boolean) {
       this.hadDynamicAddedRoutes = added;
     },
+    setLastBuildMenuTime() {
+      this.lastBuildMenuTime = new Date().getTime();
+    },
     setFrontMenuListAction(menus: Menu[]) {
       this.frontMenuList = menus;
     },
 
     // 创建路由
-    async createRoutesAction(): Promise<AppRouteRecordRaw[]> {
+    createRoutesAction(): AppRouteRecordRaw[] {
       const userStore = useUserStore();
       let routes: AppRouteRecordRaw[] = [];
       const roleList = toRaw(userStore.getRoleList) || [];
@@ -65,8 +71,8 @@ export const usePermissionStore = defineStore("permission", {
       return routes;
     },
 
-    async buildRoutesAction() {
-      const routes = await this.createRoutesAction();
+    buildRoutesAction() {
+      const routes = this.createRoutesAction();
       routes.forEach((route) => {
         router.addRoute(route as unknown as RouteRecordRaw);
       });

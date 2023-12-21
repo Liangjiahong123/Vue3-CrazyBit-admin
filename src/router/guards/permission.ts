@@ -26,7 +26,6 @@ export function createPermissionGurad(router: Router) {
       next(redirecRoute);
       return;
     }
-
     // 如果上次更新时间为0，需要更新用户信息
     if (userStore.getLastUpdateTime === 0) {
       try {
@@ -37,7 +36,6 @@ export function createPermissionGurad(router: Router) {
         return;
       }
     }
-
     // 如果路由已经动态添加, 则直接进入
     if (permissionStore.getHadDynamicAddedRoutes) {
       next();
@@ -45,6 +43,6 @@ export function createPermissionGurad(router: Router) {
     }
 
     permissionStore.buildRoutesAction();
-    next();
+    next({ path: to.fullPath, replace: true, query: to.query });
   });
 }
