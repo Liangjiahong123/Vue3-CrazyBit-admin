@@ -7,16 +7,12 @@ const { prefixCls } = useClassName("layout-aside");
 
 <template>
   <el-aside width="210px" :class="prefixCls">
-    <div class="py-10px pl-10px h-80px">
-      <AppLogo />
-    </div>
     <LayoutMenu />
   </el-aside>
 </template>
 
 <style lang="scss">
 $prefix-cls: "#{$namespace}-layout-aside";
-$logo-prefix-cls: "#{$namespace}-app-logo";
 
 .#{$prefix-cls} {
   background-color: $layout-menu-hover-color;

@@ -2,7 +2,6 @@ import type { Router } from "vue-router";
 import { createPermissionGurad } from "./permission";
 
 export function setupRouterGuard(router: Router) {
-  console.log("初始化路由守卫");
   createPageGuard(router);
   createPermissionGurad(router);
 }
